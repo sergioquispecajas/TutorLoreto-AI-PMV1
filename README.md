@@ -96,3 +96,34 @@ Primero crea el repositorio vacío real en https://github.com/new y sustituye TU
 - [ ] URL de repositorio + commits + pull request.
 - [ ] URL real del Project + cinco colaboradores + asignados + fechas.
 - [ ] Tabla PDCA con resultados verdaderos, capturas y correcciones.
+
+
+## Validación funcional de HU01
+
+La historia HU01 permite registrar consultas académicas
+desde la interfaz web de TutorLoreto AI.
+
+### Prueba de integración realizada
+
+- Asignatura: Matemática
+- Pregunta: como aprender limites
+- Resultado: consulta registrada con ID 1
+- Estado de la consulta: PENDIENTE
+- Base de datos: MySQL
+
+Se verificó que la consulta enviada desde la interfaz
+web fue almacenada en la tabla consultas.
+
+### Pruebas automatizadas
+
+Comando utilizado:
+
+python -m pytest -q
+
+Resultado obtenido:
+
+11 passed, 1 warning in 1.66s
+
+Nota: el prototipo actual registra consultas académicas.
+La generación de respuestas mediante IA local continúa
+pendiente de implementación.
