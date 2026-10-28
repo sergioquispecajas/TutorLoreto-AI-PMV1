@@ -65,6 +65,9 @@ def test_error_repositorio_es_503(cliente):
     app.dependency_overrides[obtener_repositorio] = lambda: RepoCaido()
     r = cliente.post('/api/consultas', json={'asignatura_id': 1, 'pregunta': 'Duda'})
     assert r.status_code == 503
+    assert r.json() == {
+    'detail': 'No se pudo registrar la consulta en la base de datos.'
+    }
 
 
 def test_lista_asignaturas(cliente):

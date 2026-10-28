@@ -1,22 +1,226 @@
-const select=document.getElementById("asignatura");
-const result=document.getElementById("resultado");
-async function cargar(){
-  try{
-    const r=await fetch("/api/asignaturas");
-    if(!r.ok) throw Error("No se pudo cargar asignaturas");
-    const items=await r.json();
-    select.innerHTML='<option value="">Seleccionar asignatura</option>';
-    items.forEach(x=>{const o=document.createElement("option");o.value=x.id;o.textContent=x.nombre;select.append(o)});
-  }catch(e){result.textContent="Error: "+e.message}
+/* TutorLoreto AI · PMV1 · Frontend M3E sin dependencias externas */
+'use strict';
+const VISTAS = new Set(['portada','inicio','asignaturas','consulta','registro','procesando','explicacion','validacion','ayuda','conexion','error_ia','sin_lan','sin_resultados','limite','desempeno']);
+const NAV = new Set(['inicio','asignaturas','consulta','ayuda']);
+const state = {asignaturas:[], seleccionada:null, pregunta:'', consultaId:null, respuesta:null, cargando:false, catalogoError:false, vista:'portada'};
+const $ = id => document.getElementById(id);
+const emojis = {'matematica':'📐','comunicacion':'📖','ciencia y tecnologia':'🔬','ciencias sociales':'🌎','desarrollo personal, ciudadania y civica':'🤝','educacion para el trabajo':'🛠️','ingles':'🗣️','arte y cultura':'🎨','educacion fisica':'⚽','educacion religiosa':'📜','castellano como segunda lengua':'💬'};
+const extra = ['📖','✍️','🔬','🌎','🎨'];
+const normalizar = valor => String(valor || '').normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLocaleLowerCase('es-PE');
+const emojiDe = (materia,i=0) => emojis[normalizar(materia.nombre)] || extra[i%extra.length];
+function poner(id,valor){$(id).textContent=String(valor);}
+function decir(mensaje){poner('notificaciones',mensaje);}
+function ir(vista, {historial=true}={}){
+  if(!VISTAS.has(vista))vista='portada';
+  state.vista=vista;
+  document.querySelectorAll('[data-vista]').forEach(el=>{el.hidden=el.dataset.vista!==vista;});
+  $('nav-inferior').hidden=!NAV.has(vista);
+  document.querySelectorAll('[data-nav]').forEach(el=>el.dataset.nav===vista?el.setAttribute('aria-current','page'):el.removeAttribute('aria-current'));
+  if(historial && location.hash.slice(1)!==vista)history.pushState({vista},'',`#${vista}`);
+  if(vista==='consulta')refrescarConsulta();
+  if(vista==='asignaturas')mostrarAsignaturas();
+  if(vista==='conexion')comprobarConexion();
+  window.scrollTo(0,0);
+  const encabezado=$(`vista-${vista}`)?.querySelector('h1');
+  if(encabezado){encabezado.tabIndex=-1;encabezado.focus({preventScroll:true});}
+  decir(`Pantalla: ${encabezado?.textContent || vista}`);
 }
-document.getElementById("enviar").addEventListener("click",async()=>{
-  result.textContent="Procesando...";
+function nombreActual(){return state.asignaturas.find(a=>a.id===state.seleccionada)?.nombre || 'Sin seleccionar';}
+function elegir(id, continuar=false){
+  if(!state.asignaturas.some(a=>a.id===id))return;
+  state.seleccionada=id;mostrarAsignaturas();mostrarDestacados();refrescarConsulta();
+  decir(`Asignatura seleccionada: ${nombreActual()}`);
+  if(continuar)ir('consulta');
+}
+function mostrarDestacados(){
+  const caja=$('cursos-destacados');caja.replaceChildren();
+  if(!state.asignaturas.length){const p=document.createElement('p');p.className='texto-ayuda';p.textContent=state.catalogoError?'Error de MySQL: revisa la conexión desde Áreas.':'Todavía no hay asignaturas registradas.';caja.append(p);return;}
+  state.asignaturas.slice(0,4).forEach((materia,i)=>{
+    const btn=document.createElement('button');btn.type='button';btn.className='curso-destacado';
+    const em=document.createElement('span');em.textContent=emojiDe(materia,i);em.setAttribute('aria-hidden','true');
+    const nombre=document.createElement('strong');nombre.textContent=materia.nombre;btn.append(em,nombre);
+    btn.addEventListener('click',()=>elegir(materia.id,true));caja.append(btn);
+  });
+}
+function mostrarAsignaturas(){
+  const caja=$('lista-asignaturas');caja.replaceChildren();
+  const q=normalizar($('buscar-asignatura').value.trim());
+  const lista=state.asignaturas.filter(a=>normalizar(a.nombre).includes(q));
+  poner('contador-asignaturas',`${lista.length} ${lista.length===1?'asignatura':'asignaturas'} ${q?'encontradas':'disponibles'}`);
+  $('continuar-asignatura').disabled=state.seleccionada===null;
+  $('error-asignaturas').hidden=!state.catalogoError;
+  lista.forEach((materia,i)=>{
+    const btn=document.createElement('button');btn.type='button';btn.className='curso-entrada';btn.setAttribute('aria-pressed',String(state.seleccionada===materia.id));
+    const em=document.createElement('span');em.className='icono-area';em.textContent=emojiDe(materia,i);em.setAttribute('aria-hidden','true');
+    const nombre=document.createElement('span');const titulo=document.createElement('strong');titulo.textContent=materia.nombre;
+    const sub=document.createElement('small');sub.textContent='Área curricular';nombre.append(titulo,sub);
+    const marca=document.createElement('span');marca.className='marca';marca.textContent=state.seleccionada===materia.id?'✓':'›';marca.setAttribute('aria-hidden','true');
+    btn.append(em,nombre,marca);btn.addEventListener('click',()=>elegir(materia.id));caja.append(btn);
+  });
+  if(q && !lista.length && !state.catalogoError && state.vista==='asignaturas'){
+    poner('busqueda-sin-resultado',$('buscar-asignatura').value);ir('sin_resultados');
+  }
+}
+function refrescarConsulta(){
+  poner('curso-consulta',nombreActual());
+  if($('pregunta').value!==state.pregunta)$('pregunta').value=state.pregunta;
+  actualizarContador();
+}
+function actualizarContador(){
+  const n=$('pregunta').value.length;poner('contador-pregunta',`${n} / 2000`);
+  $('contador-pregunta').classList.toggle('exceso',n>2000);
+}
+async function pedir(url,options={}){
+  let respuesta;
+  try{respuesta=await fetch(url,{cache:'no-store',...options});}
+  catch(e){throw {red:true,mensaje:'No se pudo contactar el servidor escolar.'};}
+  let contenido;try{contenido=await respuesta.json();}catch{contenido={};}
+  if(!respuesta.ok)throw {http:respuesta.status,mensaje:typeof contenido.detail==='string'?contenido.detail:`Error HTTP ${respuesta.status}.`};
+  return contenido;
+}
+async function cargarAsignaturas(){
   try{
-    const r=await fetch("/api/consultas",{method:"POST",headers:{"Content-Type":"application/json"},
-      body:JSON.stringify({asignatura_id:Number(select.value),pregunta:document.getElementById("pregunta").value})});
-    const data=await r.json();
-    if(!r.ok)throw Error(typeof data.detail==="string"?data.detail:"Revisa los datos");
-    result.textContent=`Consulta registrada con ID ${data.id}. Estado: ${data.estado}.`;
-  }catch(e){result.textContent="No se pudo registrar: "+e.message}
+    const lista=await pedir('/api/asignaturas');
+    if(!Array.isArray(lista))throw {mensaje:'Respuesta incorrecta del catálogo.'};
+    state.asignaturas=lista.filter(a=>Number.isInteger(a.id)&&typeof a.nombre==='string');state.catalogoError=false;
+    if(state.seleccionada!==null && !state.asignaturas.some(a=>a.id===state.seleccionada))state.seleccionada=null;
+  }catch(e){state.catalogoError=true;state.asignaturas=[];decir(e.mensaje||'No se pudo cargar el catálogo');}
+  mostrarDestacados();mostrarAsignaturas();refrescarConsulta();
+}
+async function guardarConsulta(){
+  if(state.cargando)return;
+  state.pregunta=$('pregunta').value;
+  if(state.seleccionada===null){poner('mensaje-validacion','Debes seleccionar una asignatura antes de enviar.');ir('validacion');return;}
+  if(!state.pregunta.trim()){poner('mensaje-validacion','Escribe una pregunta para que tu tutor pueda ayudarte.');ir('validacion');return;}
+  if(state.pregunta.length>2000){poner('longitud-pregunta',state.pregunta.length);ir('limite');return;}
+  state.cargando=true;$('enviar').disabled=true;
+  try{
+    const dato=await pedir('/api/consultas',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({asignatura_id:state.seleccionada,pregunta:state.pregunta.trim()})});
+    state.consultaId=dato.id;state.respuesta=null;poner('registro-id',`#${dato.id}`);poner('registro-resumen',state.pregunta.trim());ir('registro');
+  }catch(e){
+    if(e.red)ir('sin_lan');
+    else{poner('mensaje-validacion',e.mensaje||'No se pudo guardar la consulta.');ir('validacion');}
+  }finally{state.cargando=false;$('enviar').disabled=false;}
+}
+function mostrarExplicacion(contenido){
+  const caja=$('explicacion-pasos');caja.replaceChildren();
+  // Respeta íntegramente el texto de Ollama. Solo divide párrafos para facilitar lectura.
+  const porParrafos=String(contenido||'').trim().split(/\n\s*\n+/).filter(Boolean);
+  const partes=porParrafos.length>1?porParrafos:String(contenido||'').trim().split(/\n(?=\s*(?:\d+[).:-]|paso\s+\d+))/i).filter(Boolean);
+  partes.forEach((fragmento,i)=>{
+    const bloque=document.createElement('article');bloque.className='paso-respuesta';
+    const n=document.createElement('span');n.className='paso-numero';n.textContent=String(i+1).padStart(2,'0');
+    
+    const texto = document.createElement('div');
+    const p = document.createElement('p');
+
+    fragmento.split(/(\*\*[^*]+\*\*)/g).forEach(parte => {
+      if (parte.startsWith('**') && parte.endsWith('**')) {
+        const negrita = document.createElement('strong');
+        negrita.textContent = parte.slice(2, -2);
+        p.append(negrita);
+      } else {
+        p.append(document.createTextNode(parte));
+      }
+    });
+
+    texto.append(p);
+    bloque.append(n, texto);
+    caja.append(bloque);
+
+  });
+}
+async function generarExplicacion(){
+  if(state.cargando||!state.consultaId)return;
+  state.cargando=true;ir('procesando');
+  try{
+    const respuesta=await pedir(`/api/consultas/${encodeURIComponent(state.consultaId)}/explicacion`,{method:'POST'});
+    state.respuesta=respuesta;poner('curso-explicacion',nombreActual());poner('pregunta-explicacion',state.pregunta);
+    mostrarExplicacion(respuesta.contenido);
+    
+if (typeof renderMathInElement === "function") {
+  renderMathInElement(document.getElementById("explicacion-pasos"), {
+    delimiters: [
+      { left: "$$", right: "$$", display: true },
+      { left: "\\[", right: "\\]", display: true },
+      { left: "\\(", right: "\\)", display: false }
+    ],
+    throwOnError: false
+  });
+}
+    ir('explicacion');
+  }catch(e){poner('detalle-error-ia',e.mensaje||'No fue posible generar la explicación con IA local.');ir('error_ia');}
+  finally{state.cargando=false;}
+}
+function nuevaPregunta(){state.pregunta='';state.consultaId=null;state.respuesta=null;$('pregunta').value='';actualizarContador();ir('consulta');}
+async function comprobarConexion(){
+  poner('estado-servidor','Comprobando…');poner('estado-modelo','Comprobando…');
+  let disponible=false;
+  try{await pedir('/api/estado');poner('estado-servidor','Disponible');disponible=true;}
+  catch{poner('estado-servidor','Sin respuesta');}
+  if(disponible){
+    try{const dato=await pedir('/api/ia/estado');poner('estado-modelo',dato.disponible?'Listo':'No disponible');poner('detalle-conexion',dato.detalle||`Modelo: ${dato.modelo||'no informado'}`);}
+    catch{poner('estado-modelo','Sin comprobar');poner('detalle-conexion','El servidor responde pero no se pudo comprobar Ollama.');}
+  }else{poner('estado-modelo','Sin comprobar');poner('detalle-conexion','Comprueba FastAPI, la dirección y la red escolar.');}
+}
+document.addEventListener('click',evento=>{const boton=evento.target.closest('[data-ir]');if(boton)ir(boton.dataset.ir);});
+$('buscar-asignatura').addEventListener('input',()=>{if(state.vista==='asignaturas')mostrarAsignaturas();});
+$('pregunta').addEventListener('input',()=>{state.pregunta=$('pregunta').value;actualizarContador();});
+$('continuar-asignatura').addEventListener('click',()=>{if(state.seleccionada!==null)ir('consulta');});
+$('enviar').addEventListener('click',guardarConsulta);
+$('generar-explicacion').addEventListener('click',generarExplicacion);
+$('reintentar-ia').addEventListener('click',generarExplicacion);
+$('otra-consulta').addEventListener('click',nuevaPregunta);
+$('otra-consulta-registro').addEventListener('click',nuevaPregunta);
+$('comprobar-conexion').addEventListener('click',comprobarConexion);
+$('reintentar-red').addEventListener('click',async()=>{try{await pedir('/api/estado');await cargarAsignaturas();ir('inicio');}catch{decir('El servidor todavía no responde.');}});
+$('reintentar-asignaturas').addEventListener('click',cargarAsignaturas);
+$('limpiar-busqueda').addEventListener('click',()=>{$('buscar-asignatura').value='';ir('asignaturas');});
+
+/* Ocultar resultados anteriores cuando cambian los datos */
+$('form-desempeno').addEventListener('input', () => {
+  $('des-mensaje').textContent = '';
+  $('des-resultado').hidden = true;
 });
-cargar();
+
+/* Pantalla 15: análisis predictivo local - PoC S9 */
+$('form-desempeno').addEventListener('submit', async (evento) => {
+  evento.preventDefault();
+
+  const formulario = evento.currentTarget;
+  const boton = formulario.querySelector('button[type="submit"]');
+  const mensaje = $('des-mensaje');
+  const resultado = $('des-resultado');
+
+  const datos = Object.fromEntries(
+    [...new FormData(formulario)].map(([clave, valor]) => [
+      clave, Number(valor)
+    ])
+  );
+
+  boton.disabled = true;
+  mensaje.textContent = 'Analizando tus resultados...';
+  resultado.hidden = true;
+
+  try {
+    const respuesta = await pedir('/api/prediccion/refuerzo', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(datos)
+    });
+
+    $('des-clasificacion').textContent = respuesta.resultado;
+    $('des-recomendacion').textContent = respuesta.recomendacion;
+    resultado.hidden = false;
+    mensaje.textContent = 'Análisis completado.';
+  } catch (error) {
+    mensaje.textContent = error.mensaje || 'No se pudo analizar el desempeño.';
+  } finally {
+    boton.disabled = false;
+  }
+});
+
+window.addEventListener('popstate',()=>ir(location.hash.slice(1),{historial:false}));
+window.addEventListener('hashchange',()=>{if(location.hash.slice(1)!==state.vista)ir(location.hash.slice(1),{historial:false});});
+ir(VISTAS.has(location.hash.slice(1))?location.hash.slice(1):'portada',{historial:false});
+cargarAsignaturas();

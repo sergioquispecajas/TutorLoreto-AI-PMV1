@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 520 330" role="img" aria-label="Ilustración de estudiante con libros y computadora">
+<defs><linearGradient id="s" x2="0" y2="1"><stop stop-color="#D4F0FE"/><stop offset="1" stop-color="#E9F0FF"/></linearGradient></defs>
+<rect width="520" height="330" rx="38" fill="url(#s)"/>
+<circle cx="438" cy="70" r="33" fill="#B2EAFF"/><circle cx="75" cy="78" r="25" fill="#BEEADD"/>
+<path d="M37 241Q115 190 202 220T481 220V330H37Z" fill="#C5D8FF"/>
+<path d="M55 245h122v19H55z" fill="#7E67CE"/><path d="M64 227h115v18H64z" fill="#FF9D89"/><path d="M77 210h101v17H77z" fill="#FFE19C"/>
+<path d="M345 267h122v12H345z" fill="#7157CB"/><path d="M352 250h108v18H352z" fill="#FFFFFF"/><path d="M351 232h103v16H351z" fill="#6FD3B7"/>
+<path d="M220 130Q233 86 286 90Q333 92 341 145L322 169H239Z" fill="#3A2A72"/>
+<ellipse cx="280" cy="145" rx="51" ry="55" fill="#F4B3A0"/>
+<path d="M229 128Q241 76 291 89Q335 89 335 137Q313 120 308 105Q271 135 229 128Z" fill="#34265F"/>
+<circle cx="261" cy="143" r="4" fill="#362C49"/><circle cx="300" cy="143" r="4" fill="#362C49"/><path d="M269 163q13 11 25-1" fill="none" stroke="#BC6273" stroke-width="4" stroke-linecap="round"/>
+<path d="M209 221q11-52 71-52t73 52v68H209Z" fill="#6C58D6"/><path d="M247 177 278 206 309 177l-6 54h-50Z" fill="#FBF9FF"/>
+<rect x="171" y="218" width="210" height="89" rx="12" fill="#4556B4"/><rect x="181" y="228" width="190" height="68" rx="6" fill="#6878DF"/><circle cx="276" cy="260" r="12" fill="#E8E8FF"/>
+<path d="M149 308h260" stroke="#3E3671" stroke-width="10" stroke-linecap="round"/>
+<path d="m111 70 7 14 16 3-12 10 3 15-14-8-14 8 3-15-12-10 16-3Z" fill="#FFD370"/><path d="m397 114 5 12 14 2-10 9 3 13-12-7-12 7 3-13-10-9 14-2Z" fill="#FF9BAA"/>
+<path d="M420 202q-16-23-34-4m19-26q-3 12-14 15" stroke="#46AF9C" stroke-width="6" fill="none" stroke-linecap="round"/>
+</svg>
