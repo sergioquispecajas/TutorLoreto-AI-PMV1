@@ -1,8 +1,217 @@
 <!doctype html>
-<html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>TutorLoreto AI | PMV1</title><link rel="stylesheet" href="/styles.css"></head>
-<body><main><header><span class="tag">PMV1 · Prototipo funcional</span><h1>TutorLoreto AI</h1><p>Registra tu consulta académica</p></header>
-<section class="panel"><label for="asignatura">Asignatura</label><select id="asignatura"><option value="">Cargando...</option></select>
-<label for="pregunta">¿Qué necesitas aprender?</label><textarea id="pregunta" maxlength="2000" placeholder="Ej.: ¿Cómo resuelvo una ecuación de primer grado?"></textarea>
-<button id="enviar">Registrar consulta</button><div id="resultado" role="status" aria-live="polite"></div></section>
-<p class="nota">Demostración: registra preguntas en MySQL. Aún no genera explicaciones con IA.</p></main><script src="/app.js"></script></body></html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#6145CA">
+  <meta name="description" content="TutorLoreto AI: consultas escolares y explicaciones mediante inteligencia artificial local.">
+  <title>TutorLoreto AI · PMV1</title>
+  <link rel="stylesheet" href="/styles.css?v=nav5">
+  <script src="/app.js?v=m3e4" defer></script>
+</head>
+
+<link rel="stylesheet" href="/katex/katex.min.css">
+<script defer src="/katex/katex.min.js"></script>
+<script defer src="/katex/contrib/auto-render.min.js"></script>
+
+<body>
+<div class="app-shell" id="aplicacion">
+  <main id="contenido" tabindex="-1">
+
+    <!-- 01 / Bienvenida -->
+    <section class="vista portada" id="vista-portada" data-vista="portada" aria-labelledby="titulo-portada">
+      <div class="portada-fondo">
+        <span class="pildora pildora-clara"><span aria-hidden="true">✦</span> TUTORLORETO AI</span>
+        <img src="/assets/aprender.svg" alt="Estudiante aprendiendo con libros y computadora" class="ilustracion-principal">
+        <span class="decoracion decoracion-uno" aria-hidden="true"></span><span class="decoracion decoracion-dos" aria-hidden="true"></span>
+      </div>
+      <div class="portada-inferior">
+        <span class="eyebrow">APRENDIZAJE PARA LORETO</span>
+        <h1 id="titulo-portada">Aprender comienza con una pregunta.</h1>
+        <p>Tu tutor educativo para secundaria. Pregunta, comprende y aprende paso a paso desde la red de tu colegio.</p>
+        <button type="button" class="btn btn-primario btn-ancho" data-ir="inicio">Comenzar ahora <span aria-hidden="true">→</span></button>
+        <button type="button" class="btn btn-texto btn-ancho" data-ir="ayuda">¿Cómo funciona?</button>
+        <p class="aviso-suave"><span aria-hidden="true">✳</span> Sin cuenta · Servidor escolar · IA local</p>
+      </div>
+    </section>
+
+    <!-- 02 / Inicio -->
+    <section class="vista" id="vista-inicio" data-vista="inicio" hidden aria-labelledby="titulo-inicio">
+      <header class="cabecera cabecera-morada">
+        <div class="cabecera-fila"><div><div class="cabecera-micro">TUTORLORETO AI <span class="punto-luz">●</span></div><h1 id="titulo-inicio">¡Hola, estudiante! 👋</h1><p>¿Qué te gustaría aprender hoy?</p></div><button class="icon-btn icon-btn-claro" type="button" data-ir="conexion" aria-label="Ver estado del tutor">◎</button></div>
+        <button type="button" class="buscador-inicio" data-ir="asignaturas"><span aria-hidden="true">⌕</span><span>Buscar una asignatura...</span><span aria-hidden="true">→</span></button>
+      </header>
+      <div class="contenido-pantalla home-content">
+        <article class="banner-educativo"><div class="banner-texto"><span class="chip chip-blanco">COMIENZA AQUÍ</span><h2>Una duda puede ser un gran descubrimiento.</h2><p>Tu IA escolar te explica con ejemplos y pasos.</p><button class="btn btn-blanco btn-pequeno" type="button" data-ir="consulta">Hacer una pregunta <span aria-hidden="true">↗</span></button></div><img src="/assets/aprender.svg" alt="" aria-hidden="true"></article>
+        <div class="titulo-seccion"><h2>¿Qué quieres hacer?</h2></div>
+        <div class="accesos-grid"><button type="button" data-ir="asignaturas" class="acceso acceso-lila"><span class="acceso-emoji">📚</span><strong>Explorar áreas</strong><small>Busca tu asignatura</small></button><button type="button" data-ir="consulta" class="acceso acceso-verde"><span class="acceso-emoji">✍️</span><strong>Preguntar</strong><small>Escribe tu consulta</small></button><button type="button" data-ir="ayuda" class="acceso acceso-azul"><span class="acceso-emoji">💡</span><strong>Guía rápida</strong><small>Aprende a usarla</small></button><button type="button" data-ir="conexion" class="acceso acceso-rosa"><span class="acceso-emoji">📡</span><strong>Conexión</strong><small>Estado del servidor</small></button></div>
+        <div class="pie-espaciado">
+           <button type="button" class="btn btn-secundario btn-ancho"
+          data-ir="desempeno">
+          📊 Analizar mi desempeño
+        </button>
+     </div>
+          <div class="titulo-seccion"><h2>Áreas disponibles</h2><button class="enlace" type="button" data-ir="asignaturas">Ver todas →</button></div>
+        <div class="cursos-destacados" id="cursos-destacados"><p class="texto-ayuda">Cargando asignaturas desde MySQL…</p></div>
+        <div class="nota-local">🌿 <span>Diseñada para funcionar dentro de la red escolar, sin depender de Internet externo.</span></div>
+      </div>
+    </section>
+
+    <!-- 03 / Búsqueda de asignaturas -->
+    <section class="vista" id="vista-asignaturas" data-vista="asignaturas" hidden aria-labelledby="titulo-asignaturas">
+      <header class="cabecera cabecera-simple"><button type="button" class="flecha-volver" data-ir="inicio" aria-label="Volver a inicio">←</button><div><span class="eyebrow">ELIGE TU ÁREA</span><h1 id="titulo-asignaturas">Asignaturas</h1></div></header>
+      <div class="contenido-pantalla">
+        <h2 class="subtitulo">¿Qué quieres estudiar?</h2><p class="texto-ayuda">Elige una asignatura de la lista escolar.</p>
+        <label class="buscador-caja" for="buscar-asignatura"><span aria-hidden="true">⌕</span><input id="buscar-asignatura" type="search" placeholder="Buscar por nombre..." autocomplete="off"><span class="tecla-search" aria-hidden="true">⌕</span></label>
+        <div class="resultado-busqueda" id="contador-asignaturas" aria-live="polite">Cargando catálogo…</div>
+        <div class="lista-asignaturas" id="lista-asignaturas" role="list"></div>
+        <div class="mensaje-lineal" id="error-asignaturas" role="status" hidden><strong>No se pudo consultar MySQL.</strong><p>Comprueba que la base de datos y el servidor estén funcionando.</p><button type="button" class="btn btn-secundario" id="reintentar-asignaturas">Reintentar</button></div>
+        <div class="pie-espaciado"><button type="button" class="btn btn-primario btn-ancho" id="continuar-asignatura" disabled>Continuar con la asignatura →</button></div>
+      </div>
+    </section>
+
+    <!-- 04 / Realizar consulta -->
+    <section class="vista" id="vista-consulta" data-vista="consulta" hidden aria-labelledby="titulo-consulta">
+      <header class="cabecera cabecera-simple"><button type="button" class="flecha-volver" data-ir="inicio" aria-label="Volver a inicio">←</button><div><span class="eyebrow">PASO 1 DE 2</span><h1 id="titulo-consulta">Nueva consulta</h1></div></header>
+      <div class="contenido-pantalla">
+        <div class="progreso"><span class="progreso-activo"></span><span></span></div>
+        <div class="tarjeta-seleccion"><div class="icono-area" aria-hidden="true">📘</div><div><small>ASIGNATURA ELEGIDA</small><strong id="curso-consulta">Sin seleccionar</strong></div><button class="enlace" type="button" data-ir="asignaturas">Cambiar</button></div>
+        <h2 class="subtitulo margen-arriba">¿En qué te ayudo?</h2><p class="texto-ayuda">Escribe una pregunta con tus propias palabras.</p>
+        <label for="pregunta" class="label-entrada">Tu pregunta</label>
+        <textarea id="pregunta" rows="6" placeholder="Ej.: ¿Cómo resuelvo la ecuación 2x + 5 = 15?" aria-describedby="contador-pregunta"></textarea>
+        <div class="contador-linea"><span>Escribe lo que no comprendes.</span><output id="contador-pregunta" for="pregunta">0 / 2000</output></div>
+        <div class="pista"><span class="pista-icono">✦</span><p><strong>Una idea para preguntar</strong><br>«Explícame este tema paso a paso y dame un ejemplo».</p></div>
+        <button type="button" id="enviar" class="btn btn-primario btn-ancho">Registrar consulta →</button>
+        <p class="texto-centro pequeno">La explicación se genera después de registrar tu pregunta.</p>
+      </div>
+    </section>
+
+    <!-- 05 / Registro exitoso -->
+    <section class="vista estado-vista" id="vista-registro" data-vista="registro" hidden aria-labelledby="titulo-registro">
+      <header class="cabecera cabecera-simple"><button class="flecha-volver" type="button" data-ir="consulta" aria-label="Volver a consulta">←</button><h1>Consulta guardada</h1></header>
+      <div class="contenido-pantalla centro-estado"><div class="icono-estado exito">✓</div><span class="eyebrow">CONSULTA REGISTRADA EN MYSQL</span><h2 id="titulo-registro">¡Recibimos tu pregunta!</h2><p>Tu consulta ya está guardada. Ahora puedes solicitar una explicación mediante la IA instalada en el servidor escolar.</p><div class="resumen-pregunta"><small>NÚMERO DE CONSULTA</small><strong id="registro-id">—</strong><p id="registro-resumen">—</p></div><button class="btn btn-primario btn-ancho" type="button" id="generar-explicacion">Generar explicación con IA →</button><button class="btn btn-texto btn-ancho" type="button" id="otra-consulta-registro">Hacer otra pregunta</button></div>
+    </section>
+
+    <!-- 06 / Procesamiento IA -->
+    <section class="vista estado-vista" id="vista-procesando" data-vista="procesando" hidden aria-labelledby="titulo-procesando">
+      <header class="cabecera cabecera-simple"><div class="flecha-volver solo-icono" aria-hidden="true">✦</div><h1>Tu tutor está pensando</h1></header>
+      <div class="contenido-pantalla centro-estado"><div class="orbita-ia" aria-hidden="true"><span>✦</span></div><span class="eyebrow">PASO 2 DE 2 · IA LOCAL</span><h2 id="titulo-procesando">Preparando una explicación...</h2><p>Estamos organizando la respuesta en pasos sencillos. Puede tardar un poco, según la computadora del colegio.</p><div class="pasos-carga"><div><span>✓</span> Pregunta registrada</div><div><span class="loader-mini"></span> Esperando la respuesta de Ollama</div></div><p class="texto-ayuda">Puedes dejar esta pantalla abierta mientras procesa.</p></div>
+    </section>
+
+    <!-- 07 / Explicación IA -->
+    <section class="vista" id="vista-explicacion" data-vista="explicacion" hidden aria-labelledby="titulo-explicacion">
+      <header class="cabecera cabecera-simple"><button type="button" class="flecha-volver" data-ir="inicio" aria-label="Volver al inicio">←</button><div><span class="eyebrow">RESPUESTA DEL TUTOR</span><h1 id="titulo-explicacion">Explicación paso a paso</h1></div></header>
+      <div class="contenido-pantalla"><div class="tarjeta-seleccion"><div class="icono-area" aria-hidden="true">🧠</div><div><small>ASIGNATURA</small><strong id="curso-explicacion">—</strong></div><span class="chip chip-exito">IA local</span></div><div class="pregunta-citada"><small>TU PREGUNTA</small><p id="pregunta-explicacion">—</p></div><div class="titulo-seccion"><h2>Vamos paso a paso</h2><span class="chip chip-morado">Explicación</span></div><div id="explicacion-pasos" class="bloque-pasos" aria-live="polite"></div><div class="nota-local"><span aria-hidden="true">✦</span><span>Verifica con tus materiales de clase cualquier información que te genere dudas.</span></div><button class="btn btn-primario btn-ancho" type="button" id="otra-consulta">Hacer otra pregunta →</button><button class="btn btn-secundario btn-ancho" type="button" data-ir="asignaturas">Cambiar de asignatura</button></div>
+    </section>
+
+    <!-- 08 / Validación -->
+    <section class="vista estado-vista" id="vista-validacion" data-vista="validacion" hidden aria-labelledby="titulo-validacion">
+      <header class="cabecera cabecera-simple"><button type="button" class="flecha-volver" data-ir="consulta" aria-label="Volver a consulta">←</button><h1>Revisa tu consulta</h1></header><div class="contenido-pantalla centro-estado"><div class="icono-estado alerta">!</div><span class="eyebrow">ANTES DE ENVIAR</span><h2 id="titulo-validacion">¡Podemos ayudarte!</h2><p id="mensaje-validacion">Escribe una pregunta y selecciona una asignatura para continuar.</p><div class="pista"><span class="pista-icono">✍️</span><p><strong>Ejemplo:</strong><br>¿Por qué se producen las lluvias?</p></div><button class="btn btn-primario btn-ancho" type="button" data-ir="consulta">Corregir mi consulta →</button></div>
+    </section>
+
+    <!-- 09 / Tutorial -->
+    <section class="vista" id="vista-ayuda" data-vista="ayuda" hidden aria-labelledby="titulo-ayuda">
+      <header class="cabecera cabecera-morada cabecera-ayuda"><button type="button" class="flecha-volver flecha-clara" data-ir="inicio" aria-label="Volver al inicio">←</button><span class="eyebrow eyebrow-claro">GUÍA RÁPIDA</span><h1 id="titulo-ayuda">Aprender es más fácil con una buena pregunta.</h1><p>Tu tutor te acompaña durante el estudio.</p></header>
+      <div class="contenido-pantalla"><div class="titulo-seccion"><h2>¿Cómo se utiliza?</h2></div><div class="paso-ayuda"><span class="burbuja ayuda-uno">1</span><div><h3>Busca una asignatura</h3><p>Selecciona el área curricular que estás estudiando.</p></div></div><div class="paso-ayuda"><span class="burbuja ayuda-dos">2</span><div><h3>Escribe tu consulta</h3><p>Pregunta con tus propias palabras. Puedes pedir ejemplos.</p></div></div><div class="paso-ayuda"><span class="burbuja ayuda-tres">3</span><div><h3>Lee la explicación</h3><p>La IA local intenta explicar el tema con pasos sencillos.</p></div></div><div class="nota-local"><span>📡</span><span>Para usar TutorLoreto AI, necesitas conectarte al servidor del colegio mediante su red local. El servidor puede funcionar sin Internet externo.</span></div><button class="btn btn-primario btn-ancho" type="button" data-ir="asignaturas">Elegir mi asignatura →</button></div>
+    </section>
+
+    <!-- 10 / Estado de conexión -->
+    <section class="vista" id="vista-conexion" data-vista="conexion" hidden aria-labelledby="titulo-conexion">
+      <header class="cabecera cabecera-simple"><button type="button" class="flecha-volver" data-ir="inicio" aria-label="Volver al inicio">←</button><div><span class="eyebrow">SERVIDOR ESCOLAR</span><h1 id="titulo-conexion">Estado de conexión</h1></div></header>
+      <div class="contenido-pantalla"><div class="status-hero"><span aria-hidden="true">📡</span><h2>Tu tutor en la red local</h2><p>Comprueba si el servidor y la IA local responden.</p></div><div class="lista-estados"><div class="estado-fila"><div><strong>Servidor TutorLoreto</strong><small>Respuesta desde esta página</small></div><span id="estado-servidor" class="chip chip-neutro">Sin comprobar</span></div><div class="estado-fila"><div><strong>Modelo de IA</strong><small>Ollama instalado en el servidor</small></div><span id="estado-modelo" class="chip chip-neutro">Sin comprobar</span></div><div class="estado-fila"><div><strong>Internet externo</strong><small>La prueba offline se hace en el colegio</small></div><span class="chip chip-neutro">No comprobado</span></div></div><p id="detalle-conexion" class="texto-ayuda" role="status">Pulsa Comprobar para consultar los servicios.</p><button class="btn btn-primario btn-ancho" type="button" id="comprobar-conexion">Comprobar servicios →</button><button class="btn btn-secundario btn-ancho" type="button" data-ir="ayuda">Cómo usar la red escolar</button><div class="nota-local"><span>ℹ</span><span>Una respuesta del servidor no demuestra por sí sola HU07 ni HU08. Esas pruebas deben ejecutarse con Internet externo desconectado y otro equipo de la misma LAN.</span></div></div>
+    </section>
+
+    <!-- 11 / Error de IA -->
+    <section class="vista estado-vista" id="vista-error_ia" data-vista="error_ia" hidden aria-labelledby="titulo-error-ia"><header class="cabecera cabecera-simple"><button class="flecha-volver" type="button" data-ir="registro" aria-label="Volver">←</button><h1>La IA necesita atención</h1></header><div class="contenido-pantalla centro-estado"><div class="icono-estado fallo">✕</div><h2 id="titulo-error-ia">No se pudo generar la explicación</h2><p id="detalle-error-ia">Ollama podría estar apagado o el modelo no estar disponible.</p><div class="mensaje-lineal"><strong>Tu pregunta sigue guardada.</strong><p>Si la consulta se registró correctamente, puedes reintentar sin enviarla otra vez a MySQL.</p></div><button type="button" class="btn btn-primario btn-ancho" id="reintentar-ia">Reintentar explicación →</button><button type="button" class="btn btn-secundario btn-ancho" data-ir="inicio">Volver al inicio</button></div></section>
+
+    <!-- 12 / Servidor inaccesible -->
+    <section class="vista estado-vista" id="vista-sin_lan" data-vista="sin_lan" hidden aria-labelledby="titulo-sin-lan"><header class="cabecera cabecera-simple"><button type="button" class="flecha-volver" data-ir="inicio" aria-label="Volver al inicio">←</button><h1>Comprobar conexión</h1></header><div class="contenido-pantalla centro-estado"><div class="icono-estado alerta">⌁</div><h2 id="titulo-sin-lan">No se pudo contactar al servidor</h2><p>Verifica que el servidor TutorLoreto AI esté encendido y que tu dispositivo esté conectado a la red del colegio.</p><div class="mensaje-lineal"><strong>No necesitas Internet externo para acceder al servidor local.</strong><p>La conexión a la misma LAN y la dirección correcta del servidor sí son necesarias.</p></div><button type="button" id="reintentar-red" class="btn btn-primario btn-ancho">Volver a comprobar →</button><button class="btn btn-texto btn-ancho" type="button" data-ir="inicio">Volver al inicio</button></div></section>
+
+    <!-- 13 / Sin resultados -->
+    <section class="vista estado-vista" id="vista-sin_resultados" data-vista="sin_resultados" hidden aria-labelledby="titulo-sin-resultados"><header class="cabecera cabecera-simple"><button class="flecha-volver" type="button" data-ir="asignaturas" aria-label="Volver a asignaturas">←</button><h1>Buscar asignaturas</h1></header><div class="contenido-pantalla centro-estado"><div class="icono-estado suave">⌕</div><h2 id="titulo-sin-resultados">No encontramos coincidencias</h2><p>Prueba otro nombre o una parte del nombre del curso.</p><p class="texto-ayuda">Búsqueda: <strong id="busqueda-sin-resultado">—</strong></p><button class="btn btn-primario btn-ancho" id="limpiar-busqueda" type="button">Ver todas las asignaturas →</button></div></section>
+
+    <!-- 14 / Exceso de caracteres -->
+    <section class="vista estado-vista" id="vista-limite" data-vista="limite" hidden aria-labelledby="titulo-limite"><header class="cabecera cabecera-simple"><button class="flecha-volver" type="button" data-ir="consulta" aria-label="Volver a consulta">←</button><h1>Revisa tu pregunta</h1></header><div class="contenido-pantalla centro-estado"><div class="icono-estado alerta">!</div><h2 id="titulo-limite">Tu pregunta es demasiado larga</h2><p>El máximo permitido es de 2000 caracteres. Puedes resumirla sin perder la idea principal.</p><div class="pista"><span class="pista-icono">✍️</span><p>Tu texto tiene <strong id="longitud-pregunta">0</strong> caracteres. No se ha registrado.</p></div><button type="button" class="btn btn-primario btn-ancho" data-ir="consulta">Acortar mi pregunta →</button></div></section> 
+    
+    <!-- 15 / Análisis predictivo de desempeño - PoC S9 -->
+    <section class="vista" id="vista-desempeno"
+             data-vista="desempeno" hidden
+             aria-labelledby="titulo-desempeno">
+
+      <header class="cabecera cabecera-simple">
+        <button type="button" class="flecha-volver"
+                data-ir="inicio" aria-label="Volver al inicio">
+          ←
+        </button>
+        <div>
+          <span class="eyebrow">INTELIGENCIA ARTIFICIAL PREDICTIVA</span>
+          <h1 id="titulo-desempeno">Analizar desempeño</h1>
+        </div>
+      </header>
+
+      <div class="contenido-pantalla">
+        <p>
+          Ingresa los resultados de una práctica para estimar
+          si conviene reforzar el tema estudiado.
+        </p>
+
+        <form id="form-desempeno">
+
+          <label for="des-grado">Grado de secundaria</label>
+          <input id="des-grado" name="grado" type="number"
+                 min="1" max="5" step="1" required>
+
+          <label for="des-aciertos">Porcentaje de aciertos (%)</label>
+          <input id="des-aciertos" name="porcentaje_aciertos"
+                 type="number" min="0" max="100" step="0.1" required>
+
+          <label for="des-incorrectas">Respuestas incorrectas</label>
+          <input id="des-incorrectas" name="respuestas_incorrectas"
+                 type="number" min="0" max="8" step="1" required>
+
+          <label for="des-tiempo">Tiempo promedio (segundos)</label>
+          <input id="des-tiempo" name="tiempo_promedio_segundos"
+                 type="number" min="10" max="180" step="0.1" required>
+
+          <label for="des-temas">Temas con error</label>
+          <input id="des-temas" name="temas_con_error"
+                 type="number" min="0" max="6" step="1" required>
+
+          <label for="des-intentos">Intentos previos</label>
+          <input id="des-intentos" name="intentos_previos"
+                 type="number" min="0" max="8" step="1" required>
+
+          <button type="submit" class="btn btn-primario btn-ancho">
+            Analizar mi desempeño →
+          </button>
+        </form>
+
+        <p id="des-mensaje" role="status" aria-live="polite"></p>
+
+        <div id="des-resultado" hidden aria-live="polite">
+          <h2 id="des-clasificacion">Resultado</h2>
+          <p id="des-recomendacion"></p>
+        </div>
+
+        <div class="nota-local">
+          <span aria-hidden="true">ℹ</span>
+          <span>
+            Esta predicción es demostrativa. El modelo fue entrenado
+            con datos sintéticos y no constituye una evaluación
+            definitiva del estudiante.
+          </span>
+        </div>
+      </div>
+    </section>
+
+  </main>
+  <nav class="nav-inferior" id="nav-inferior" aria-label="Navegación principal" hidden>
+    <button type="button" data-ir="inicio" data-nav="inicio"><span aria-hidden="true">⌂</span><small>Inicio</small></button>
+    <button type="button" data-ir="asignaturas" data-nav="asignaturas"><span aria-hidden="true">▦</span><small>Áreas</small></button>
+    <button type="button" data-ir="consulta" data-nav="consulta"><span aria-hidden="true">✎</span><small>Consulta</small></button>
+    <button type="button" data-ir="ayuda" data-nav="ayuda"><span aria-hidden="true">ⓘ</span><small>Ayuda</small></button>
+  </nav>
+</div>
+<div id="notificaciones" role="status" aria-live="polite" class="sr-only"></div>
+</body>
+</html>

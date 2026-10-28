@@ -5,3 +5,5 @@ pymysql>=1.1,<2
 python-dotenv>=1,<2
 pytest>=8,<10
 httpx>=0.27,<1
+joblib
+pandas

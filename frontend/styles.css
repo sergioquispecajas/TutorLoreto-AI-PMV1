@@ -1,1 +1,195 @@
-*{box-sizing:border-box}body{font-family:system-ui,Arial;background:#edf4fa;color:#17334b;margin:0}main{max-width:760px;margin:50px auto;padding:18px}header{background:linear-gradient(110deg,#123a68,#1c77a4);color:white;padding:30px;border-radius:18px}h1{margin:8px 0}.tag{font-size:12px;background:#ffffff24;padding:7px 12px;border-radius:18px}.panel{background:white;border:1px solid #dce6f1;box-shadow:0 8px 22px #193f6512;border-radius:18px;padding:28px;margin-top:20px}label{display:block;font-weight:700;margin:15px 0 8px}select,textarea{width:100%;padding:13px;border:1px solid #a9c0d5;border-radius:9px;font:inherit}textarea{min-height:140px;resize:vertical}button{background:#1665a5;color:white;border:0;padding:13px 20px;border-radius:9px;margin-top:18px;font-weight:700;cursor:pointer}button:hover{background:#124b7c}#resultado{margin-top:16px;white-space:pre-wrap}.nota{color:#526b81;font-size:13px}
+/* TutorLoreto AI · adaptación web móvil del diseño M3E (sin CDNs) */
+:root{--morado:#6748cd;--morado-oscuro:#4833a6;--texto:#26243c;--suave:#75718e;--fondo:#f7f7fd;--borde:#e7e4f2;--blanco:#fff}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:linear-gradient(135deg,#e6e4fa,#ecf4fb);color:var(--texto);font-family:Inter,"Segoe UI",Arial,system-ui,sans-serif;line-height:1.45}button,input,textarea{font:inherit}button{cursor:pointer}button:disabled{opacity:.5;cursor:not-allowed}button:focus-visible,input:focus-visible,textarea:focus-visible{outline:3px solid #41a8ef;outline-offset:3px}[hidden]{display:none!important}h1,h2,h3,p{margin-top:0}h1,h2{letter-spacing:-.035em;line-height:1.15}.app-shell{max-width:448px;margin:auto;min-height:100dvh;background:var(--fondo);box-shadow:0 12px 45px #1e184123}.vista{min-height:100dvh;padding-bottom:92px}.vista.portada{padding-bottom:0;background:white}.sr-only{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0,0,0,0)}
+.btn{border:0;border-radius:15px;min-height:49px;padding:13px 17px;font-size:.85rem;font-weight:800;display:inline-flex;align-items:center;justify-content:center;gap:9px;text-align:center}.btn-ancho{display:flex;width:100%;margin-top:13px}.btn-primario{background:var(--morado);color:white;box-shadow:0 8px 14px #6748cd20}.btn-primario:hover{background:var(--morado-oscuro)}.btn-secundario{background:#ebe5fe;color:#4932a0}.btn-texto{background:transparent;color:#6046b7}.btn-blanco{background:white;color:#503aaf}.btn-pequeno{font-size:.72rem;min-height:34px;border-radius:10px;padding:8px 11px}.enlace{color:var(--morado);font-weight:800;border:0;background:none;font-size:.75rem}.eyebrow{display:block;font-size:.68rem;letter-spacing:.09em;font-weight:850;color:#8879b3;margin-bottom:6px}.eyebrow-claro{color:#d9ceff}.texto-ayuda{font-size:.82rem;color:var(--suave);line-height:1.55}.texto-centro{text-align:center}.pequeno{font-size:.75rem}.chip{display:inline-flex;align-items:center;border-radius:30px;padding:5px 10px;font-weight:850;font-size:.65rem;white-space:nowrap}.chip-blanco{background:#ffffffc9;color:#3e3584}.chip-exito{background:#d7f8e4;color:#216b52}.chip-morado{background:#e9e4ff;color:#654abb}.chip-neutro{background:#f0edf9;color:#79728d}.pildora{display:inline-flex;align-items:center;gap:7px;padding:8px 13px;border-radius:22px;font-size:.72rem;font-weight:850}.pildora-clara{background:#ffffff30;color:white}
+/* Portada */
+.portada-fondo{height:min(53dvh,470px);min-height:330px;background:linear-gradient(145deg,#7957e0,#4c31a7);position:relative;overflow:hidden;padding:28px 25px;border-radius:0 0 80px 35px}.portada-fondo:before{content:"";position:absolute;width:260px;height:260px;border-radius:50%;right:-90px;top:-85px;background:#ffffff13}.ilustracion-principal{position:relative;display:block;width:min(86%,340px);margin:36px auto 0;border-radius:22px;box-shadow:0 15px 35px #30195a55;transform:rotate(-2deg)}.decoracion{position:absolute}.decoracion-uno{width:46px;height:46px;border:3px solid #ffffff65;border-radius:50%;right:16px;bottom:26px}.decoracion-dos{width:19px;height:19px;background:#aaf2c2;border-radius:5px;left:23px;bottom:64px;transform:rotate(20deg)}.portada-inferior{text-align:center;background:white;padding:34px 28px 36px}.portada-inferior h1{font-size:clamp(1.9rem,8vw,2.3rem);margin-bottom:14px}.portada-inferior p{font-size:.88rem;color:var(--suave);line-height:1.63}.portada-inferior .aviso-suave{font-size:.69rem;margin-top:24px}
+/* Cabeceras */
+.cabecera{padding:25px 22px}.cabecera-morada{border-radius:0 0 29px 29px;background:linear-gradient(145deg,#7250d5,#4b35a9);color:white}.cabecera-fila{display:flex;justify-content:space-between;gap:12px}.cabecera-micro{font-size:.66rem;letter-spacing:.08em;font-weight:850;color:#eee9ff}.punto-luz{color:#9bedc2}.cabecera-morada h1{font-size:1.64rem;margin:5px 0}.cabecera-morada p{color:#ede6ff;font-size:.82rem;margin:0}.icon-btn{border:0;display:grid;place-items:center;width:42px;height:42px;border-radius:14px;font-size:1.6rem}.icon-btn-claro{background:#ffffff25;color:white}.buscador-inicio{width:100%;display:flex;align-items:center;gap:9px;padding:12px 16px;min-height:50px;border:0;border-radius:15px;background:white;color:#77738f;margin-top:21px;text-align:left}.buscador-inicio span:nth-child(2){flex:1;font-size:.84rem}.buscador-inicio span:first-child{font-size:1.5rem;color:#6748cd}.cabecera-simple{display:flex;align-items:center;gap:13px;padding:21px 21px 15px}.cabecera-simple h1{font-size:1.35rem;margin:0}.cabecera-simple .eyebrow{margin:0}.flecha-volver{border:0;flex:0 0 41px;width:41px;height:41px;border-radius:13px;background:#ebe7f8;color:#583db0;font-size:1.35rem}.flecha-clara{background:#ffffff27;color:white}.cabecera-ayuda{display:block;min-height:235px}.cabecera-ayuda .flecha-volver{display:block;margin-bottom:18px}.cabecera-ayuda h1{font-size:1.65rem}.solo-icono{display:grid;place-items:center}
+/* Inicio */
+.contenido-pantalla{padding:18px 22px 34px}.titulo-seccion{display:flex;align-items:baseline;justify-content:space-between;gap:10px;margin:25px 0 13px}.titulo-seccion h2{font-size:1.13rem;margin:0}.subtitulo{font-size:1.28rem;margin:0 0 5px}.margen-arriba{margin-top:26px}.banner-educativo{position:relative;display:flex;min-height:183px;background:#d6efff;overflow:hidden;border-radius:23px;padding:17px}.banner-texto{position:relative;z-index:1;width:65%}.banner-texto h2{font-size:1rem;margin:10px 0 7px;color:#263b65}.banner-texto p{font-size:.69rem;color:#50618d;line-height:1.5;margin-bottom:10px}.banner-educativo img{width:53%;position:absolute;right:-30px;bottom:8px;border-radius:14px;mix-blend-mode:multiply;transform:rotate(5deg)}.accesos-grid,.cursos-destacados{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:11px}.acceso{min-height:127px;display:flex;flex-direction:column;align-items:flex-start;text-align:left;gap:4px;border:0;border-radius:20px;padding:14px}.acceso strong{font-size:.84rem;color:#29264b;margin-top:8px}.acceso small{font-size:.68rem;color:#696582}.acceso-emoji{font-size:1.24rem;background:#ffffffa6;padding:5px;border-radius:10px}.acceso-lila{background:#eae3ff}.acceso-verde{background:#d7f7e6}.acceso-azul{background:#dff0ff}.acceso-rosa{background:#ffe3eb}.curso-destacado{display:flex;flex-direction:column;align-items:flex-start;justify-content:space-between;gap:8px;border:1px solid var(--borde);border-radius:17px;min-height:104px;padding:14px;background:white;text-align:left}.curso-destacado span{font-size:1.4rem}.curso-destacado strong{font-size:.78rem;overflow-wrap:anywhere}.nota-local{display:flex;gap:10px;background:#ebe7fb;color:#615782;padding:16px;border-radius:16px;font-size:.76rem;line-height:1.5;margin-top:23px}.nota-local span:first-child{font-size:1.3rem;flex:0 0 auto}
+/* Asignaturas */
+.buscador-caja{display:flex;align-items:center;gap:8px;background:#efedf7;padding:10px 14px;border:1px solid #e1dced;border-radius:14px;margin:19px 0;color:#6b53b5}.buscador-caja span:first-child{font-size:1.5rem}.buscador-caja input{flex:1;min-width:0;border:0;outline:0;background:none;font-size:.89rem;color:var(--texto)}.buscador-caja:focus-within{outline:3px solid #a5a4ef}.resultado-busqueda{font-size:.76rem;font-weight:800;color:#857e99;margin:18px 0 12px}.lista-asignaturas{display:grid;gap:9px}.curso-entrada{display:flex;align-items:center;gap:11px;border:1.5px solid var(--borde);background:white;width:100%;padding:11px 13px;border-radius:17px;min-height:69px;text-align:left}.curso-entrada[aria-pressed="true"]{background:#eee9fe;border-color:var(--morado)}.curso-entrada>span:nth-child(2){min-width:0;flex:1}.curso-entrada strong{display:block;font-size:.84rem;overflow-wrap:anywhere}.curso-entrada small{display:block;color:#8b879b;font-size:.67rem;margin-top:3px}.curso-entrada .marca{color:#5940b5;font-size:1.2rem;font-weight:850}.icono-area{flex:0 0 43px;height:43px;background:#eae5ff;border-radius:12px;display:grid;place-items:center;font-size:1.25rem}.curso-entrada:nth-child(4n+2) .icono-area{background:#def8e9}.curso-entrada:nth-child(4n+3) .icono-area{background:#e3f1ff}.curso-entrada:nth-child(4n+4) .icono-area{background:#ffe3ec}.pie-espaciado{margin-top:19px}
+/* Consulta */
+.progreso{display:flex;gap:7px;margin-bottom:20px}.progreso span{height:5px;background:#e6e0f4;flex:1;border-radius:10px}.progreso .progreso-activo{background:var(--morado)}.tarjeta-seleccion{display:flex;align-items:center;gap:12px;padding:12px;background:white;border:1px solid var(--borde);border-radius:17px}.tarjeta-seleccion>div:nth-child(2){min-width:0;flex:1}.tarjeta-seleccion small,.pregunta-citada small,.resumen-pregunta small{display:block;color:#8a83a0;font-size:.66rem;letter-spacing:.04em;font-weight:850}.tarjeta-seleccion strong{display:block;font-size:.85rem;overflow-wrap:anywhere}.label-entrada{display:block;font-size:.82rem;font-weight:850;margin:22px 0 8px}textarea{display:block;width:100%;min-height:166px;border:1.5px solid #dcd7ea;border-radius:17px;padding:15px;font-size:1rem;line-height:1.5;color:#22203c;resize:vertical;background:white}textarea::placeholder{color:#a29aae}.contador-linea{display:flex;justify-content:space-between;gap:10px;color:#908b9e;font-size:.73rem;margin:7px 0}.contador-linea .exceso{color:#c53461;font-weight:800}.pista{display:flex;align-items:flex-start;gap:12px;background:#ebe5ff;border-radius:17px;padding:14px;margin:21px 0 12px;color:#55448f}.pista-icono{font-size:1.3rem}.pista p{font-size:.75rem;margin:0;line-height:1.5}
+/* Respuesta y estados */
+.estado-vista .centro-estado{padding-top:31px;text-align:center}.centro-estado h2{font-size:1.55rem;margin-bottom:11px}.centro-estado>p{font-size:.86rem;color:var(--suave);line-height:1.6}.icono-estado{width:112px;height:112px;border-radius:33px;margin:4px auto 24px;display:grid;place-items:center;font-size:3.2rem;font-weight:600}.exito{background:#d8f8e6;color:#279575}.alerta{background:#fff0d9;color:#d7954b}.fallo{background:#ffe4ea;color:#c75776}.suave{background:#e8e5fe;color:#6548c4}.resumen-pregunta{margin:20px 0;background:white;border:1px solid var(--borde);border-radius:17px;padding:17px;text-align:left}.resumen-pregunta strong{font-size:1.4rem;color:var(--morado)}.resumen-pregunta p{font-size:.82rem;margin:11px 0 0;overflow-wrap:anywhere}.orbita-ia{display:grid;place-items:center;width:155px;height:155px;border-radius:50%;background:radial-gradient(circle,#c3b4ff 0 33%,#e4dcff 34% 58%,#f4f0ff 59%);margin:33px auto;animation:respirar 2s ease-in-out infinite}.orbita-ia span{font-size:3.5rem;color:var(--morado)}@keyframes respirar{50%{transform:scale(1.06)}}.pasos-carga{text-align:left;background:white;border:1px solid var(--borde);border-radius:18px;padding:14px;margin:23px 0}.pasos-carga div{display:flex;align-items:center;gap:12px;margin:8px 0;font-size:.82rem}.pasos-carga div span{width:24px;height:24px;display:grid;place-items:center;color:#279773}.loader-mini{border:2px solid #e9ddff;border-top-color:var(--morado);border-radius:50%;animation:girar .8s linear infinite}@keyframes girar{to{transform:rotate(360deg)}}.pregunta-citada{background:#eeedff;border-radius:17px;padding:16px;margin:19px 0}.pregunta-citada p{margin:8px 0 0;font-weight:680;overflow-wrap:anywhere}.bloque-pasos{display:grid;gap:11px}.paso-respuesta{display:flex;gap:12px;align-items:flex-start;background:white;border:1px solid var(--borde);border-radius:17px;padding:15px}.paso-numero{display:grid;place-items:center;background:#eae5ff;color:#6545bb;border-radius:11px;min-width:32px;height:32px;font-size:.77rem;font-weight:850}.paso-respuesta div{min-width:0}.paso-respuesta p{font-size:.84rem;line-height:1.64;margin:0;white-space:pre-wrap;overflow-wrap:anywhere}.mensaje-lineal{background:#ffe8ee;border-radius:16px;padding:15px;text-align:left;margin:15px 0;font-size:.8rem;color:#7a4354}.mensaje-lineal p{margin:5px 0 0}.paso-ayuda{display:flex;align-items:flex-start;gap:15px;padding:15px;margin:0 0 12px;border:1px solid var(--borde);border-radius:17px;background:white}.paso-ayuda h3{font-size:.87rem;margin:0 0 5px}.paso-ayuda p{font-size:.77rem;color:var(--suave);margin:0}.burbuja{display:grid;place-items:center;width:38px;height:38px;border-radius:12px;flex:0 0 38px;font-weight:850}.ayuda-uno{background:#e8e0ff;color:#6547c9}.ayuda-dos{background:#d7f8e6;color:#29966d}.ayuda-tres{background:#ffe3eb;color:#c35878}
+.status-hero{border-radius:22px;background:linear-gradient(145deg,#ece8ff,#e4f1ff);text-align:center;padding:23px;margin-bottom:17px}.status-hero span{font-size:2.5rem}.status-hero h2{font-size:1.12rem;margin:10px 0 5px}.status-hero p{font-size:.78rem;color:#76718e;margin:0}.lista-estados{background:white;border:1px solid var(--borde);border-radius:18px;overflow:hidden}.estado-fila{display:flex;justify-content:space-between;align-items:center;gap:11px;padding:16px;border-bottom:1px solid var(--borde)}.estado-fila:last-child{border:0}.estado-fila strong{font-size:.82rem}.estado-fila small{display:block;font-size:.68rem;color:#868298;margin-top:5px}.estado-fila .chip{max-width:134px;white-space:normal;text-align:center}
+/* Navegación inferior */
+.nav-inferior{position:fixed;bottom:0;left:50%;transform:translateX(-50%);width:100%;max-width:448px;background:#fff;border-top:1px solid #eeeaf6;box-shadow:0 -5px 25px #261b5a1e;display:grid;grid-template-columns:repeat(4,1fr);padding:7px 9px max(10px,env(safe-area-inset-bottom));z-index:5}.nav-inferior button{min-height:52px;display:flex;align-items:center;flex-direction:column;gap:0;background:none;color:#9691a6;border:0;border-radius:12px;font-weight:750}.nav-inferior button span{font-size:1.35rem;border-radius:15px;width:50px;line-height:1.55}.nav-inferior button small{font-size:.65rem}.nav-inferior button[aria-current="page"]{color:var(--morado)}.nav-inferior button[aria-current="page"] span{background:#f0eafe}
+@media(min-width:600px){body{padding:22px 0}.app-shell{border:5px solid #29233e;border-radius:30px;min-height:860px}.vista{min-height:860px}}@media(max-width:359px){.contenido-pantalla{padding-left:15px;padding-right:15px}.cabecera{padding-left:16px;padding-right:16px}.banner-educativo img{opacity:.42}.banner-texto{width:88%}.acceso{padding:11px}}@media(prefers-reduced-motion:reduce){*,*:before,*:after{animation:none!important;scroll-behavior:auto!important}}
+/* El foco de navegación programática en títulos no debe dibujar un recuadro visual. */
+h1[tabindex="-1"]:focus{outline:none}
+
+/* TutorLoreto AI: explicación estilo lectura educativa */
+
+.bloque-pasos {
+  display: block;
+  background: #ffffff;
+  border: 1px solid #e4dff0;
+  border-radius: 18px;
+  padding: 20px 17px;
+}
+
+.paso-respuesta {
+  display: block;
+  background: transparent;
+  border: none;
+  border-bottom: 1px solid #eeeaf4;
+  border-radius: 0;
+  padding: 0 0 18px;
+  margin-bottom: 18px;
+}
+
+.paso-respuesta:last-child {
+  border-bottom: none;
+  padding-bottom: 0;
+  margin-bottom: 0;
+}
+
+.paso-numero {
+  display: none;
+}
+
+.paso-respuesta p {
+  font-size: 15px;
+  line-height: 1.8;
+  color: #252239;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}
+
+/* Corregir el texto que se sale en Inicio */
+#vista-inicio .nota-local span {
+  flex: 1 1 0;
+  min-width: 0;
+  font-size: inherit;
+  overflow-wrap: anywhere;
+}
+
+/* PMV1 - Explicaciones con estilo de lectura */
+
+.bloque-pasos {
+  display: block;
+  background: #ffffff;
+  border: 1px solid #e4dff0;
+  border-radius: 18px;
+  padding: 18px;
+}
+
+.paso-respuesta {
+  display: block;
+  padding: 0 0 16px;
+  margin: 0 0 16px;
+  background: transparent;
+  border: none;
+  border-bottom: 1px solid #eeeaf4;
+  border-radius: 0;
+}
+
+.paso-respuesta:last-child {
+  border-bottom: none;
+  padding-bottom: 0;
+  margin-bottom: 0;
+}
+
+.paso-numero {
+  display: none;
+}
+
+.paso-respuesta p {
+  font-size: 15px;
+  line-height: 1.8;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}
+
+/* Distribución del celular y navegación inferior */
+
+.app-shell {
+  display: flex;
+  flex-direction: column;
+  height: 100dvh;
+  min-height: 0;
+  overflow: hidden;
+}
+
+.app-shell > main {
+  flex: 1 1 0;
+  min-height: 0;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+.app-shell .vista {
+  min-height: 0;
+  overflow: visible;
+  padding-bottom: 24px;
+}
+
+.app-shell > .nav-inferior {
+  position: static;
+  left: auto;
+  bottom: auto;
+  transform: none;
+  width: 100%;
+  max-width: none;
+  flex: 0 0 auto;
+  box-shadow: none;
+}
+
+@media (min-width: 600px) {
+  .app-shell {
+    height: calc(100dvh - 44px);
+    min-height: 0;
+  }
+}
+
+/* Fórmulas matemáticas más legibles en el celular */
+#explicacion-pasos .katex {
+  font-size: 1.35em;
+}
+
+#explicacion-pasos .katex-display {
+  overflow-x: auto;
+  overflow-y: hidden;
+  padding: 12px 0;
+}
+/* Evitar el doble desplazamiento */
+html,
+body {
+  height: 100%;
+  overflow: hidden;
+}
+
+/* Pantalla 15: formulario de análisis predictivo */
+
+#form-desempeno {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: 20px;
+}
+
+#form-desempeno label {
+  display: block;
+  font-weight: 600;
+  font-size: 14px;
+  margin-top: 8px;
+}
+
+#form-desempeno input {
+  display: block;
+  width: 100%;
+  min-width: 0;
+  padding: 13px 14px;
+  border: 1px solid #d5d3e8;
+  border-radius: 12px;
+  background: #ffffff;
+  font: inherit;
+  font-size: 16px;
+}
+
+#form-desempeno button {
+  margin-top: 16px;
+}
