@@ -52,3 +52,9 @@
 .tl-home-card small{font-size:.66rem;color:#746d85;line-height:1.4}
 .tl-extra button:focus-visible,.tl-home-card:focus-visible,.tl-course-card:focus-visible,.tl-topic-card:focus-visible{outline:3px solid #54a5e8;outline-offset:3px}
 @media(max-width:359px){.tl-home-section{padding:13px}.tl-home-card{padding:10px}.tl-chat-settings{grid-template-columns:1fr}.tl-chat-settings .tl-label,.tl-chat-settings .tl-select{grid-column:1}}
+
+.tl-video-results{display:grid;gap:12px;grid-column:1/-1}
+.tl-video-card{display:grid;gap:7px;padding:11px;border:1px solid #e8e3f0;border-radius:15px;background:#fff}
+.tl-video-card iframe{display:block;width:100%;aspect-ratio:16/9;border:0;border-radius:11px;background:#17151e}
+.tl-video-card strong{font-size:.78rem;line-height:1.45;color:#39344e}
+.tl-video-card small,.tl-video-fallback{font-size:.68rem;color:#817b92;line-height:1.5}
