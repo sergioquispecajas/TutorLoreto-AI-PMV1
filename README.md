@@ -41,7 +41,7 @@ Abre http://127.0.0.1:8001. Para LAN, inicia con `--host 0.0.0.0`, configura el 
 
 El catálogo inicial se encuentra en `app/data/biblioteca.json`. Cada asignatura incluye temas por grado, una explicación breve y un ejemplo. Para ampliar o corregir contenidos, edita ese JSON conservando la estructura `asignaturas -> temas`; cada tema debe tener `slug`, `grado`, `unidad`, `titulo`, `resumen` y `ejemplo`.
 
-La opción de videos genera una búsqueda de YouTube con el nombre de la asignatura, tema y grado. Así no se inventan identificadores de videos. El estudiante necesita Internet para abrir YouTube; los textos de la biblioteca siguen disponibles en la red local. Los contenidos incluidos son un catálogo inicial de demostración y deben ser revisados, ampliados y alineados por docentes con el Currículo Nacional y la programación de Loreto antes de usarse como material oficial.
+La opción de videos genera una búsqueda de YouTube con el nombre de la asignatura, tema y grado. Si configuras una clave de YouTube Data API, la aplicación obtiene hasta tres resultados seguros y los muestra en reproductores embebidos; si no, ofrece una búsqueda manual. El estudiante necesita Internet para reproducir videos; los textos de la biblioteca siguen disponibles en la red local. Los contenidos incluidos son un catálogo inicial de demostración y deben ser revisados, ampliados y alineados por docentes con el Currículo Nacional y la programación de Loreto antes de usarse como material oficial.
 
 ## Tutor local y tutor en línea
 
@@ -55,7 +55,7 @@ TUTOR_ONLINE_BASE_URL=https://api.openai.com/v1
 TUTOR_ONLINE_MODEL=gpt-4o-mini
 ```
 
-Puedes usar otro proveedor compatible con el formato Chat Completions cambiando base URL y modelo. El uso puede generar costos, límites de consumo y transferencia de texto al proveedor externo. Si la clave queda vacía, la opción permanece desactivada y el tutor local sigue disponible. Reinicia FastAPI después de modificar `.env`.
+Puedes usar otro proveedor compatible con el formato Chat Completions cambiando base URL y modelo. El uso puede generar costos, límites de consumo y transferencia de texto al proveedor externo. Si la clave queda vacía, la opción permanece desactivada y el tutor local sigue disponible. Para mostrar videos embebidos, configura también `YOUTUBE_API_KEY` con una clave de YouTube Data API; si la dejas vacía, se muestra un enlace de búsqueda. Reinicia FastAPI después de modificar `.env`.
 
 ## Flujo PMV2 y PMV3
 
