@@ -1,27 +1,52 @@
-# TutorLoreto AI — PMV1 · 14 pantallas M3E Canvas
+# TutorLoreto AI — PMV1 + PMV2 + PMV3
 
-**Proyecto independiente de prueba.** No sobrescribas tu versión original. Las 14 pantallas y estados están implementados en `frontend/index.html`, `styles.css`, `app.js` con navegación móvil. El proyecto incluye FastAPI, arquitectura hexagonal, repositorio MySQL y un adaptador para generación de explicaciones mediante **Ollama local**.
+## Alcance añadido
 
-## Ejecutar esta copia en Windows desde `PMV1_codigo`
+- **PMV2:** perfil académico por identificador local, explicaciones adaptadas al grado/nivel, generación de prácticas, dificultad adaptativa, corrección automática y retroalimentación explicativa.
+- **PMV3:** historial de prácticas, progreso por asignatura y tema, análisis de historial con IA local y recomendaciones orientativas.
+- El PMV1 permanece disponible y su navegación original no se reemplaza.
+
+## Requisitos y ejecución en Windows
+
+1. Instala Python 3.10 o superior, MySQL 8 y Ollama.
+2. Crea y activa un entorno virtual:
 
 ```powershell
 py -m venv .venv
-.\.venv\Scripts\python.exe -m pip install -r requirements.txt
-.\.venv\Scripts\python.exe -m pytest -q
-.\.venv\Scripts\python.exe -m uvicorn main:app --reload --port 8001
+.\.venv\Scripts\Activate.ps1
+pip install -r requirements.txt
 ```
 
-Navega a **http://127.0.0.1:8001**. Se usa otro puerto para no confundir esta versión con la original que estaba en el 8000. La barra del móvil permite recorrer Inicio, Áreas, Consulta y Ayuda.
+3. Crea una base de datos y ejecuta primero `sql/schema.sql` si todavía no existe.
+4. Ejecuta `sql/pmv2_pmv3.sql` en MySQL Workbench. Esta migración crea tablas nuevas y no elimina las del PMV1.
+5. Si ya tienes la base PMV1, ejecuta también `sql/ampliar_asignaturas_opcional.sql` para completar el catálogo de 11 asignaturas definido en el proyecto. Si acabas de crear la base, comprueba que el catálogo contiene las 11 áreas.\n6. Copia `.env.example` como `.env` y configura `DATABASE_URL`. No subas `.env` a GitHub.
+7. Instala un modelo local de Ollama, por ejemplo:
 
-- Si quieres acceder a la **misma base de datos MySQL**, copia **localmente** tu `.env` original a esta nueva carpeta `PMV1_codigo`; el archivo **no** está incluido en el ZIP. Esto hará registros reales en esa base. Mantén una copia de seguridad y no compartas contraseñas.
-- Para ampliar el catálogo opcionalmente, usa `sql/ampliar_asignaturas_opcional.sql` después de revisar los 11 nombres con tu escuela. No se ejecuta automáticamente ni borra datos.
-- Para explicaciones con IA, instala Ollama y descarga un modelo: `ollama pull qwen2.5:1.5b`. El endpoint `POST /api/consultas/{id}/explicacion` produce y almacena la respuesta si la IA local está disponible; de lo contrario presenta un mensaje de error, **sin inventar una explicación**.
-- El archivo `.env.example` contiene solo datos de ejemplo, no credenciales reales.
-- Comprueba `GET /api/estado` y `GET /api/ia/estado` desde la pantalla **Conexión**.
-- Para probar acceso escolar mediante LAN, usa `--host 0.0.0.0 --port 8001` únicamente en red confiable, configura el firewall y abre desde el segundo dispositivo `http://IP-DEL-SERVIDOR:8001`.
+```powershell
+ollama pull qwen2.5:1.5b
+```
 
-## Alcance y pruebas
+8. Ejecuta:
 
-Este ZIP incluye **14 vistas** correspondientes al M3E Canvas ordenado. El frontend y los endpoints tienen pruebas automáticas sin MySQL ni Ollama real; deben ejecutarse de nuevo en Windows. El sistema **no** puede acreditar aún HU07 sin Internet externo ni HU08 en LAN hasta realizar pruebas físicas, ni calidad pedagógica de HU04/HU-IA01 hasta conectar Ollama real. La **PoC predictiva de Colab de S9 todavía no está integrada**.
+```powershell
+uvicorn main:app --reload --port 8001
+```
 
-Consulta el archivo `LEER_PRIMERO_WINDOWS.txt` del directorio raíz y `documentacion/` para la matriz de pruebas y las instrucciones de evidencia por CA y escenario. Las evidencias oficiales se capturarán cuando hayas terminado de validar el diseño y la funcionalidad.
+Abre http://127.0.0.1:8001. Para LAN, inicia con `--host 0.0.0.0`, configura el firewall y prueba desde otro dispositivo de la red escolar.
+
+## Flujo funcional
+
+1. Desde Inicio, crea o recupera un perfil mediante un identificador que no contenga datos personales.
+2. En Practicar, selecciona asignatura, tema, cantidad y dificultad. La opción Adaptativa considera los resultados previos del mismo tema.
+3. Responde todos los ejercicios y envía la práctica. El servidor calcula aciertos, conserva respuestas y explica cada pregunta.
+4. En Historial consulta sesiones anteriores. En Mi progreso revisa resultados por asignatura y tema.
+5. Pulsa Analizar mi historial para obtener recomendaciones basadas en los temas registrados; el análisis se realiza mediante Ollama local.
+
+## Consideraciones de seguridad y alcance
+
+- La nueva capa usa identificadores locales, no un sistema de autenticación. Es apropiada para un prototipo académico en una LAN confiable, pero **no** para un despliegue público multiusuario sin autenticación, autorización y controles de privacidad.
+- No introduzcas nombre completo, DNI, correo, dirección ni información sensible de menores.
+- La clave de respuesta solo se entrega después de finalizar la práctica.
+- Las respuestas de IA pueden ser incorrectas: revísalas con el currículo y con el docente. El sistema no genera calificaciones oficiales ni diagnósticos.
+- La PoC predictiva S9 usa datos sintéticos. Sus métricas no prueban efectividad en estudiantes reales; se mantiene separada del seguimiento real del PMV3.
+- Se requieren pruebas locales con MySQL y Ollama instalados, revisión de contenido pedagógico, prueba LAN/offline y validación con usuarios/consentimiento institucional para afirmar que el producto está validado en un colegio.

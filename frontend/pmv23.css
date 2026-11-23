@@ -1,0 +1,40 @@
+/* PMV2 y PMV3 - componentes de práctica, resultados e historial. */
+.pmv-view .pmv-form{display:grid;gap:10px;margin-top:18px}
+.pmv-view .pmv-form label{font-size:.82rem;font-weight:800;margin-top:8px}
+.pmv-view .pmv-form input,.pmv-view .pmv-form select{width:100%;min-width:0;border:1px solid #dcd7ea;background:#fff;border-radius:13px;padding:13px 14px;font:inherit;font-size:16px;color:#26243c}
+.pmv-view .pmv-form small{font-size:.7rem;color:#827d94;line-height:1.45;margin-top:-6px}
+.pmv-mensaje{min-height:1.5em;color:#6c6682;font-size:.8rem;line-height:1.5;margin:12px 0}
+.pmv-mensaje.mensaje-error{color:#b43f61;background:#ffe8ee;padding:11px;border-radius:12px}
+.pmv-profile-chip{padding:12px 14px;border-radius:14px;background:#eee9ff;color:#5840a8;font-size:.78rem;font-weight:800;margin:4px 0 16px}
+.pmv-ejercicio,.pmv-feedback,.pmv-lista-item{background:#fff;border:1px solid #e6e1ef;border-radius:17px;padding:15px;margin:0 0 12px}
+.pmv-ejercicio h3,.pmv-feedback h3{font-size:.82rem;color:#6548bd;margin:0 0 10px}
+.pmv-enunciado,.pmv-feedback>p{font-size:.88rem;line-height:1.65;white-space:pre-wrap;overflow-wrap:anywhere}
+.pmv-opciones{border:0;margin:10px 0 0;padding:0;display:grid;gap:8px}
+.pmv-opciones legend{font-size:.72rem;color:#837d96;font-weight:700;margin-bottom:8px}
+.pmv-opcion{display:flex;gap:10px;align-items:flex-start;border:1px solid #e9e5f1;border-radius:12px;padding:11px;font-size:.8rem;line-height:1.5;cursor:pointer}
+.pmv-opcion:has(input:checked){background:#efeaff;border-color:#7456cf}
+.pmv-opcion input{margin-top:3px;accent-color:#6748cd;flex:0 0 auto}
+.pmv-score{border-radius:22px;background:linear-gradient(135deg,#eee8ff,#e2f6eb);text-align:center;padding:25px 15px;margin:8px 0 20px}
+.pmv-score strong{display:block;color:#5238ac;font-size:2.6rem;line-height:1.15}
+.pmv-score span{display:block;color:#625b7a;font-size:.8rem;font-weight:750;margin-top:6px}
+.pmv-feedback.correcto{border-left:5px solid #35a477}
+.pmv-feedback.incorrecto{border-left:5px solid #d16a84}
+.pmv-feedback-respuesta{font-weight:800;color:#51458c}
+.pmv-feedback-explicacion{background:#f0edfb;padding:12px;border-radius:12px;color:#5b5474;font-size:.8rem;line-height:1.6}
+.pmv-lista{display:grid;gap:10px;margin:12px 0}
+.pmv-lista-item strong{display:block;font-size:.86rem;margin-bottom:7px}
+.pmv-lista-item span,.pmv-lista-item small{display:block;color:#7e7892;font-size:.72rem;margin:4px 0}
+.pmv-lista-item p{font-size:.8rem;line-height:1.55;margin:7px 0}
+.pmv-metricas{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;margin:8px 0 22px}
+.pmv-metricas article{background:#fff;border:1px solid #e6e1ef;border-radius:15px;padding:13px 7px;text-align:center;min-width:0}
+.pmv-metricas strong{display:block;color:#6045bd;font-size:1.3rem;overflow-wrap:anywhere}
+.pmv-metricas span{display:block;color:#817b94;font-size:.65rem;margin-top:5px}
+.pmv-subtitulo{font-size:1rem;margin:22px 0 12px}
+.pmv-barra-item{padding:12px;background:#fff;border:1px solid #e6e1ef;border-radius:14px;margin-bottom:9px}
+.pmv-barra-cabecera{display:flex;justify-content:space-between;gap:8px;font-size:.78rem;margin-bottom:9px}
+.pmv-barra-cabecera strong{overflow-wrap:anywhere}
+.pmv-barra-cabecera span{font-weight:850;color:#5c42b2;white-space:nowrap}
+.pmv-barra-fondo{height:9px;border-radius:20px;background:#eeeaf5;overflow:hidden}
+.pmv-barra-avance{height:100%;border-radius:20px;background:linear-gradient(90deg,#6848cf,#58b995)}
+.pmv-barra-item small{display:block;font-size:.68rem;color:#827d93;margin-top:8px}
+@media(max-width:359px){.pmv-metricas{gap:5px}.pmv-metricas article{padding:11px 4px}}
