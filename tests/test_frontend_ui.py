@@ -45,3 +45,5 @@ def test_final_product_title_and_description():
     html = (ROOT / "frontend" / "index.html").read_text(encoding="utf-8")
     assert "<title>TutorLoreto AI · Tu tutor educativo</title>" in html
     assert "prácticas personalizadas" in html
+    assert html.index("/katex/katex.min.css") < html.index("</head>")
+    assert html.index("/katex/katex.min.js") < html.index("</head>")
