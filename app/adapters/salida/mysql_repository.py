@@ -75,6 +75,18 @@ class MySQLConsultaRepository:
                 {'id': identificador},
             ).mappings().first()
             if previa is not None:
+                # Una explicación adaptada puede sustituir la respuesta anterior de la misma consulta.
+                # Los reintentos del mismo origen siguen siendo idempotentes.
+                if origen == 'OLLAMA_LOCAL_ADAPTADA' and previa['origen'] != origen:
+                    conexion.execute(
+                        text('UPDATE respuestas SET contenido = :contenido, origen = :origen WHERE id = :id'),
+                        {'contenido': contenido, 'origen': origen, 'id': previa['id']},
+                    )
+                    return {
+                        'id': previa['id'], 'consulta_id': previa['consulta_id'],
+                        'contenido': contenido, 'origen': origen,
+                        'estado': 'RESPONDIDA', 'creado_en': previa['creado_en'].isoformat(),
+                    }
                 return {
                     'id': previa['id'], 'consulta_id': previa['consulta_id'],
                     'contenido': previa['contenido'], 'origen': previa['origen'],

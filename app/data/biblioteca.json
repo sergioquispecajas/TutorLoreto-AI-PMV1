@@ -1,0 +1,523 @@
+{
+  "version": 1,
+  "descripcion": "Catálogo inicial editable de TutorLoreto AI. Los contenidos son una base de demostración y deben ser revisados y ampliados por docentes según el Currículo Nacional y la programación regional.",
+  "asignaturas": [
+    {
+      "slug": "matematica",
+      "nombre": "Matemática",
+      "icono": "📐",
+      "temas": [
+        {
+          "slug": "numeros-naturales-y-operaciones",
+          "grado": 1,
+          "unidad": "Unidad 1",
+          "titulo": "Números naturales y operaciones",
+          "resumen": "En este tema aprenderás los conceptos fundamentales de números naturales y operaciones. Lee la explicación, identifica las ideas principales y relaciona lo aprendido con situaciones de tu vida diaria y de tu comunidad.",
+          "ejemplo": "Piensa en una situación cotidiana relacionada con números naturales y operaciones. Describe qué sabes, qué necesitas averiguar y cómo aplicarías lo aprendido para explicarla o resolverla."
+        },
+        {
+          "slug": "fracciones-y-numeros-decimales",
+          "grado": 2,
+          "unidad": "Unidad 2",
+          "titulo": "Fracciones y números decimales",
+          "resumen": "En este tema aprenderás los conceptos fundamentales de fracciones y números decimales. Lee la explicación, identifica las ideas principales y relaciona lo aprendido con situaciones de tu vida diaria y de tu comunidad.",
+          "ejemplo": "Piensa en una situación cotidiana relacionada con fracciones y números decimales. Describe qué sabes, qué necesitas averiguar y cómo aplicarías lo aprendido para explicarla o resolverla."
+        },
+        {
+          "slug": "numeros-racionales-y-proporcionalidad",
+          "grado": 3,
+          "unidad": "Unidad 3",
+          "titulo": "Números racionales y proporcionalidad",
+          "resumen": "En este tema aprenderás los conceptos fundamentales de números racionales y proporcionalidad. Lee la explicación, identifica las ideas principales y relaciona lo aprendido con situaciones de tu vida diaria y de tu comunidad.",
+          "ejemplo": "Piensa en una situación cotidiana relacionada con números racionales y proporcionalidad. Describe qué sabes, qué necesitas averiguar y cómo aplicarías lo aprendido para explicarla o resolverla."
+        },
+        {
+          "slug": "ecuaciones-e-inecuaciones",
+          "grado": 4,
+          "unidad": "Unidad 4",
+          "titulo": "Ecuaciones e inecuaciones",
+          "resumen": "En este tema aprenderás los conceptos fundamentales de ecuaciones e inecuaciones. Lee la explicación, identifica las ideas principales y relaciona lo aprendido con situaciones de tu vida diaria y de tu comunidad.",
+          "ejemplo": "Piensa en una situación cotidiana relacionada con ecuaciones e inecuaciones. Describe qué sabes, qué necesitas averiguar y cómo aplicarías lo aprendido para explicarla o resolverla."
+        },
+        {
+          "slug": "funciones-y-trigonometria",
+          "grado": 5,
+          "unidad": "Unidad 5",
+          "titulo": "Funciones y trigonometría",
+          "resumen": "En este tema aprenderás los conceptos fundamentales de funciones y trigonometría. Lee la explicación, identifica las ideas principales y relaciona lo aprendido con situaciones de tu vida diaria y de tu comunidad.",
+          "ejemplo": "Piensa en una situación cotidiana relacionada con funciones y trigonometría. Describe qué sabes, qué necesitas averiguar y cómo aplicarías lo aprendido para explicarla o resolverla."
+        }
+      ]
+    },
+    {
+      "slug": "comunicacion",
+      "nombre": "Comunicación",
+      "icono": "📖",
+      "temas": [
+        {
+          "slug": "comprension-de-textos-narrativos",
+          "grado": 1,
+          "unidad": "Unidad 1",
+          "titulo": "Comprensión de textos narrativos",
+          "resumen": "En este tema aprenderás los conceptos fundamentales de comprensión de textos narrativos. Lee la explicación, identifica las ideas principales y relaciona lo aprendido con situaciones de tu vida diaria y de tu comunidad.",
+          "ejemplo": "Piensa en una situación cotidiana relacionada con comprensión de textos narrativos. Describe qué sabes, qué necesitas averiguar y cómo aplicarías lo aprendido para explicarla o resolverla."
+        },
+        {
+          "slug": "textos-descriptivos-y-expositivos",
+          "grado": 2,
+          "unidad": "Unidad 2",
+          "titulo": "Textos descriptivos y expositivos",
+          "resumen": "En este tema aprenderás los conceptos fundamentales de textos descriptivos y expositivos. Lee la explicación, identifica las ideas principales y relaciona lo aprendido con situaciones de tu vida diaria y de tu comunidad.",
+          "ejemplo": "Piensa en una situación cotidiana relacionada con textos descriptivos y expositivos. Describe qué sabes, qué necesitas averiguar y cómo aplicarías lo aprendido para explicarla o resolverla."
+        },
+        {
+          "slug": "textos-argumentativos",
+          "grado": 3,
+          "unidad": "Unidad 3",
+          "titulo": "Textos argumentativos",
+          "resumen": "En este tema aprenderás los conceptos fundamentales de textos argumentativos. Lee la explicación, identifica las ideas principales y relaciona lo aprendido con situaciones de tu vida diaria y de tu comunidad.",
+          "ejemplo": "Piensa en una situación cotidiana relacionada con textos argumentativos. Describe qué sabes, qué necesitas averiguar y cómo aplicarías lo aprendido para explicarla o resolverla."
+        },
+        {
+          "slug": "literatura-peruana-y-analisis-textual",
+          "grado": 4,
+          "unidad": "Unidad 4",
+          "titulo": "Literatura peruana y análisis textual",
+          "resumen": "En este tema aprenderás los conceptos fundamentales de literatura peruana y análisis textual. Lee la explicación, identifica las ideas principales y relaciona lo aprendido con situaciones de tu vida diaria y de tu comunidad.",
+          "ejemplo": "Piensa en una situación cotidiana relacionada con literatura peruana y análisis textual. Describe qué sabes, qué necesitas averiguar y cómo aplicarías lo aprendido para explicarla o resolverla."
+        },
+        {
+          "slug": "ensayo-y-argumentacion-critica",
+          "grado": 5,
+          "unidad": "Unidad 5",
+          "titulo": "Ensayo y argumentación crítica",
+          "resumen": "En este tema aprenderás los conceptos fundamentales de ensayo y argumentación crítica. Lee la explicación, identifica las ideas principales y relaciona lo aprendido con situaciones de tu vida diaria y de tu comunidad.",
+          "ejemplo": "Piensa en una situación cotidiana relacionada con ensayo y argumentación crítica. Describe qué sabes, qué necesitas averiguar y cómo aplicarías lo aprendido para explicarla o resolverla."
+        }
+      ]
+    },
+    {
+      "slug": "ciencia-y-tecnologia",
+      "nombre": "Ciencia y Tecnología",
+      "icono": "🔬",
+      "temas": [
+        {
+          "slug": "seres-vivos-y-sus-caracteristicas",
+          "grado": 1,
+          "unidad": "Unidad 1",
+          "titulo": "Seres vivos y sus características",
+          "resumen": "En este tema aprenderás los conceptos fundamentales de seres vivos y sus características. Lee la explicación, identifica las ideas principales y relaciona lo aprendido con situaciones de tu vida diaria y de tu comunidad.",
+          "ejemplo": "Piensa en una situación cotidiana relacionada con seres vivos y sus características. Describe qué sabes, qué necesitas averiguar y cómo aplicarías lo aprendido para explicarla o resolverla."
+        },
+        {
+          "slug": "la-celula-y-sus-funciones",
+          "grado": 2,
+          "unidad": "Unidad 2",
+          "titulo": "La célula y sus funciones",
+          "resumen": "En este tema aprenderás los conceptos fundamentales de la célula y sus funciones. Lee la explicación, identifica las ideas principales y relaciona lo aprendido con situaciones de tu vida diaria y de tu comunidad.",
+          "ejemplo": "Piensa en una situación cotidiana relacionada con la célula y sus funciones. Describe qué sabes, qué necesitas averiguar y cómo aplicarías lo aprendido para explicarla o resolverla."
+        },
+        {
+          "slug": "materia-energia-y-ecosistemas",
+          "grado": 3,
+          "unidad": "Unidad 3",
+          "titulo": "Materia, energía y ecosistemas",
+          "resumen": "En este tema aprenderás los conceptos fundamentales de materia, energía y ecosistemas. Lee la explicación, identifica las ideas principales y relaciona lo aprendido con situaciones de tu vida diaria y de tu comunidad.",
+          "ejemplo": "Piensa en una situación cotidiana relacionada con materia, energía y ecosistemas. Describe qué sabes, qué necesitas averiguar y cómo aplicarías lo aprendido para explicarla o resolverla."
+        },
+        {
+          "slug": "genetica-y-evolucion",
+          "grado": 4,
+          "unidad": "Unidad 4",
+          "titulo": "Genética y evolución",
+          "resumen": "En este tema aprenderás los conceptos fundamentales de genética y evolución. Lee la explicación, identifica las ideas principales y relaciona lo aprendido con situaciones de tu vida diaria y de tu comunidad.",
+          "ejemplo": "Piensa en una situación cotidiana relacionada con genética y evolución. Describe qué sabes, qué necesitas averiguar y cómo aplicarías lo aprendido para explicarla o resolverla."
+        },
+        {
+          "slug": "quimica-fisica-y-ambiente",
+          "grado": 5,
+          "unidad": "Unidad 5",
+          "titulo": "Química, física y ambiente",
+          "resumen": "En este tema aprenderás los conceptos fundamentales de química, física y ambiente. Lee la explicación, identifica las ideas principales y relaciona lo aprendido con situaciones de tu vida diaria y de tu comunidad.",
+          "ejemplo": "Piensa en una situación cotidiana relacionada con química, física y ambiente. Describe qué sabes, qué necesitas averiguar y cómo aplicarías lo aprendido para explicarla o resolverla."
+        }
+      ]
+    },
+    {
+      "slug": "ciencias-sociales",
+      "nombre": "Ciencias Sociales",
+      "icono": "🌎",
+      "temas": [
+        {
+          "slug": "primeras-sociedades-y-culturas",
+          "grado": 1,
+          "unidad": "Unidad 1",
+          "titulo": "Primeras sociedades y culturas",
+          "resumen": "En este tema aprenderás los conceptos fundamentales de primeras sociedades y culturas. Lee la explicación, identifica las ideas principales y relaciona lo aprendido con situaciones de tu vida diaria y de tu comunidad.",
+          "ejemplo": "Piensa en una situación cotidiana relacionada con primeras sociedades y culturas. Describe qué sabes, qué necesitas averiguar y cómo aplicarías lo aprendido para explicarla o resolverla."
+        },
+        {
+          "slug": "civilizaciones-antiguas",
+          "grado": 2,
+          "unidad": "Unidad 2",
+          "titulo": "Civilizaciones antiguas",
+          "resumen": "En este tema aprenderás los conceptos fundamentales de civilizaciones antiguas. Lee la explicación, identifica las ideas principales y relaciona lo aprendido con situaciones de tu vida diaria y de tu comunidad.",
+          "ejemplo": "Piensa en una situación cotidiana relacionada con civilizaciones antiguas. Describe qué sabes, qué necesitas averiguar y cómo aplicarías lo aprendido para explicarla o resolverla."
+        },
+        {
+          "slug": "historia-del-peru-y-mundo-medieval",
+          "grado": 3,
+          "unidad": "Unidad 3",
+          "titulo": "Historia del Perú y mundo medieval",
+          "resumen": "En este tema aprenderás los conceptos fundamentales de historia del perú y mundo medieval. Lee la explicación, identifica las ideas principales y relaciona lo aprendido con situaciones de tu vida diaria y de tu comunidad.",
+          "ejemplo": "Piensa en una situación cotidiana relacionada con historia del perú y mundo medieval. Describe qué sabes, qué necesitas averiguar y cómo aplicarías lo aprendido para explicarla o resolverla."
+        },
+        {
+          "slug": "independencia-y-republica",
+          "grado": 4,
+          "unidad": "Unidad 4",
+          "titulo": "Independencia y república",
+          "resumen": "En este tema aprenderás los conceptos fundamentales de independencia y república. Lee la explicación, identifica las ideas principales y relaciona lo aprendido con situaciones de tu vida diaria y de tu comunidad.",
+          "ejemplo": "Piensa en una situación cotidiana relacionada con independencia y república. Describe qué sabes, qué necesitas averiguar y cómo aplicarías lo aprendido para explicarla o resolverla."
+        },
+        {
+          "slug": "historia-contemporanea-y-ciudadania",
+          "grado": 5,
+          "unidad": "Unidad 5",
+          "titulo": "Historia contemporánea y ciudadanía",
+          "resumen": "En este tema aprenderás los conceptos fundamentales de historia contemporánea y ciudadanía. Lee la explicación, identifica las ideas principales y relaciona lo aprendido con situaciones de tu vida diaria y de tu comunidad.",
+          "ejemplo": "Piensa en una situación cotidiana relacionada con historia contemporánea y ciudadanía. Describe qué sabes, qué necesitas averiguar y cómo aplicarías lo aprendido para explicarla o resolverla."
+        }
+      ]
+    },
+    {
+      "slug": "desarrollo-personal-ciudadania-y-civica",
+      "nombre": "Desarrollo Personal, Ciudadanía y Cívica",
+      "icono": "🤝",
+      "temas": [
+        {
+          "slug": "identidad-y-emociones",
+          "grado": 1,
+          "unidad": "Unidad 1",
+          "titulo": "Identidad y emociones",
+          "resumen": "En este tema aprenderás los conceptos fundamentales de identidad y emociones. Lee la explicación, identifica las ideas principales y relaciona lo aprendido con situaciones de tu vida diaria y de tu comunidad.",
+          "ejemplo": "Piensa en una situación cotidiana relacionada con identidad y emociones. Describe qué sabes, qué necesitas averiguar y cómo aplicarías lo aprendido para explicarla o resolverla."
+        },
+        {
+          "slug": "convivencia-y-respeto",
+          "grado": 2,
+          "unidad": "Unidad 2",
+          "titulo": "Convivencia y respeto",
+          "resumen": "En este tema aprenderás los conceptos fundamentales de convivencia y respeto. Lee la explicación, identifica las ideas principales y relaciona lo aprendido con situaciones de tu vida diaria y de tu comunidad.",
+          "ejemplo": "Piensa en una situación cotidiana relacionada con convivencia y respeto. Describe qué sabes, qué necesitas averiguar y cómo aplicarías lo aprendido para explicarla o resolverla."
+        },
+        {
+          "slug": "derechos-y-responsabilidades",
+          "grado": 3,
+          "unidad": "Unidad 3",
+          "titulo": "Derechos y responsabilidades",
+          "resumen": "En este tema aprenderás los conceptos fundamentales de derechos y responsabilidades. Lee la explicación, identifica las ideas principales y relaciona lo aprendido con situaciones de tu vida diaria y de tu comunidad.",
+          "ejemplo": "Piensa en una situación cotidiana relacionada con derechos y responsabilidades. Describe qué sabes, qué necesitas averiguar y cómo aplicarías lo aprendido para explicarla o resolverla."
+        },
+        {
+          "slug": "participacion-ciudadana",
+          "grado": 4,
+          "unidad": "Unidad 4",
+          "titulo": "Participación ciudadana",
+          "resumen": "En este tema aprenderás los conceptos fundamentales de participación ciudadana. Lee la explicación, identifica las ideas principales y relaciona lo aprendido con situaciones de tu vida diaria y de tu comunidad.",
+          "ejemplo": "Piensa en una situación cotidiana relacionada con participación ciudadana. Describe qué sabes, qué necesitas averiguar y cómo aplicarías lo aprendido para explicarla o resolverla."
+        },
+        {
+          "slug": "democracia-y-proyecto-de-vida",
+          "grado": 5,
+          "unidad": "Unidad 5",
+          "titulo": "Democracia y proyecto de vida",
+          "resumen": "En este tema aprenderás los conceptos fundamentales de democracia y proyecto de vida. Lee la explicación, identifica las ideas principales y relaciona lo aprendido con situaciones de tu vida diaria y de tu comunidad.",
+          "ejemplo": "Piensa en una situación cotidiana relacionada con democracia y proyecto de vida. Describe qué sabes, qué necesitas averiguar y cómo aplicarías lo aprendido para explicarla o resolverla."
+        }
+      ]
+    },
+    {
+      "slug": "educacion-para-el-trabajo",
+      "nombre": "Educación para el Trabajo",
+      "icono": "🛠️",
+      "temas": [
+        {
+          "slug": "habilidades-emprendedoras",
+          "grado": 1,
+          "unidad": "Unidad 1",
+          "titulo": "Habilidades emprendedoras",
+          "resumen": "En este tema aprenderás los conceptos fundamentales de habilidades emprendedoras. Lee la explicación, identifica las ideas principales y relaciona lo aprendido con situaciones de tu vida diaria y de tu comunidad.",
+          "ejemplo": "Piensa en una situación cotidiana relacionada con habilidades emprendedoras. Describe qué sabes, qué necesitas averiguar y cómo aplicarías lo aprendido para explicarla o resolverla."
+        },
+        {
+          "slug": "identificacion-de-necesidades",
+          "grado": 2,
+          "unidad": "Unidad 2",
+          "titulo": "Identificación de necesidades",
+          "resumen": "En este tema aprenderás los conceptos fundamentales de identificación de necesidades. Lee la explicación, identifica las ideas principales y relaciona lo aprendido con situaciones de tu vida diaria y de tu comunidad.",
+          "ejemplo": "Piensa en una situación cotidiana relacionada con identificación de necesidades. Describe qué sabes, qué necesitas averiguar y cómo aplicarías lo aprendido para explicarla o resolverla."
+        },
+        {
+          "slug": "propuesta-de-valor",
+          "grado": 3,
+          "unidad": "Unidad 3",
+          "titulo": "Propuesta de valor",
+          "resumen": "En este tema aprenderás los conceptos fundamentales de propuesta de valor. Lee la explicación, identifica las ideas principales y relaciona lo aprendido con situaciones de tu vida diaria y de tu comunidad.",
+          "ejemplo": "Piensa en una situación cotidiana relacionada con propuesta de valor. Describe qué sabes, qué necesitas averiguar y cómo aplicarías lo aprendido para explicarla o resolverla."
+        },
+        {
+          "slug": "modelo-de-negocio",
+          "grado": 4,
+          "unidad": "Unidad 4",
+          "titulo": "Modelo de negocio",
+          "resumen": "En este tema aprenderás los conceptos fundamentales de modelo de negocio. Lee la explicación, identifica las ideas principales y relaciona lo aprendido con situaciones de tu vida diaria y de tu comunidad.",
+          "ejemplo": "Piensa en una situación cotidiana relacionada con modelo de negocio. Describe qué sabes, qué necesitas averiguar y cómo aplicarías lo aprendido para explicarla o resolverla."
+        },
+        {
+          "slug": "planificacion-y-gestion-de-proyectos",
+          "grado": 5,
+          "unidad": "Unidad 5",
+          "titulo": "Planificación y gestión de proyectos",
+          "resumen": "En este tema aprenderás los conceptos fundamentales de planificación y gestión de proyectos. Lee la explicación, identifica las ideas principales y relaciona lo aprendido con situaciones de tu vida diaria y de tu comunidad.",
+          "ejemplo": "Piensa en una situación cotidiana relacionada con planificación y gestión de proyectos. Describe qué sabes, qué necesitas averiguar y cómo aplicarías lo aprendido para explicarla o resolverla."
+        }
+      ]
+    },
+    {
+      "slug": "ingles",
+      "nombre": "Inglés",
+      "icono": "🗣️",
+      "temas": [
+        {
+          "slug": "greetings-and-introductions",
+          "grado": 1,
+          "unidad": "Unidad 1",
+          "titulo": "Greetings and introductions",
+          "resumen": "En este tema aprenderás los conceptos fundamentales de greetings and introductions. Lee la explicación, identifica las ideas principales y relaciona lo aprendido con situaciones de tu vida diaria y de tu comunidad.",
+          "ejemplo": "Piensa en una situación cotidiana relacionada con greetings and introductions. Describe qué sabes, qué necesitas averiguar y cómo aplicarías lo aprendido para explicarla o resolverla."
+        },
+        {
+          "slug": "daily-routines",
+          "grado": 2,
+          "unidad": "Unidad 2",
+          "titulo": "Daily routines",
+          "resumen": "En este tema aprenderás los conceptos fundamentales de daily routines. Lee la explicación, identifica las ideas principales y relaciona lo aprendido con situaciones de tu vida diaria y de tu comunidad.",
+          "ejemplo": "Piensa en una situación cotidiana relacionada con daily routines. Describe qué sabes, qué necesitas averiguar y cómo aplicarías lo aprendido para explicarla o resolverla."
+        },
+        {
+          "slug": "past-experiences",
+          "grado": 3,
+          "unidad": "Unidad 3",
+          "titulo": "Past experiences",
+          "resumen": "En este tema aprenderás los conceptos fundamentales de past experiences. Lee la explicación, identifica las ideas principales y relaciona lo aprendido con situaciones de tu vida diaria y de tu comunidad.",
+          "ejemplo": "Piensa en una situación cotidiana relacionada con past experiences. Describe qué sabes, qué necesitas averiguar y cómo aplicarías lo aprendido para explicarla o resolverla."
+        },
+        {
+          "slug": "future-plans",
+          "grado": 4,
+          "unidad": "Unidad 4",
+          "titulo": "Future plans",
+          "resumen": "En este tema aprenderás los conceptos fundamentales de future plans. Lee la explicación, identifica las ideas principales y relaciona lo aprendido con situaciones de tu vida diaria y de tu comunidad.",
+          "ejemplo": "Piensa en una situación cotidiana relacionada con future plans. Describe qué sabes, qué necesitas averiguar y cómo aplicarías lo aprendido para explicarla o resolverla."
+        },
+        {
+          "slug": "giving-opinions-and-conditionals",
+          "grado": 5,
+          "unidad": "Unidad 5",
+          "titulo": "Giving opinions and conditionals",
+          "resumen": "En este tema aprenderás los conceptos fundamentales de giving opinions and conditionals. Lee la explicación, identifica las ideas principales y relaciona lo aprendido con situaciones de tu vida diaria y de tu comunidad.",
+          "ejemplo": "Piensa en una situación cotidiana relacionada con giving opinions and conditionals. Describe qué sabes, qué necesitas averiguar y cómo aplicarías lo aprendido para explicarla o resolverla."
+        }
+      ]
+    },
+    {
+      "slug": "arte-y-cultura",
+      "nombre": "Arte y Cultura",
+      "icono": "🎨",
+      "temas": [
+        {
+          "slug": "elementos-del-arte",
+          "grado": 1,
+          "unidad": "Unidad 1",
+          "titulo": "Elementos del arte",
+          "resumen": "En este tema aprenderás los conceptos fundamentales de elementos del arte. Lee la explicación, identifica las ideas principales y relaciona lo aprendido con situaciones de tu vida diaria y de tu comunidad.",
+          "ejemplo": "Piensa en una situación cotidiana relacionada con elementos del arte. Describe qué sabes, qué necesitas averiguar y cómo aplicarías lo aprendido para explicarla o resolverla."
+        },
+        {
+          "slug": "linea-forma-y-color",
+          "grado": 2,
+          "unidad": "Unidad 2",
+          "titulo": "Línea, forma y color",
+          "resumen": "En este tema aprenderás los conceptos fundamentales de línea, forma y color. Lee la explicación, identifica las ideas principales y relaciona lo aprendido con situaciones de tu vida diaria y de tu comunidad.",
+          "ejemplo": "Piensa en una situación cotidiana relacionada con línea, forma y color. Describe qué sabes, qué necesitas averiguar y cómo aplicarías lo aprendido para explicarla o resolverla."
+        },
+        {
+          "slug": "manifestaciones-culturales-del-peru",
+          "grado": 3,
+          "unidad": "Unidad 3",
+          "titulo": "Manifestaciones culturales del Perú",
+          "resumen": "En este tema aprenderás los conceptos fundamentales de manifestaciones culturales del perú. Lee la explicación, identifica las ideas principales y relaciona lo aprendido con situaciones de tu vida diaria y de tu comunidad.",
+          "ejemplo": "Piensa en una situación cotidiana relacionada con manifestaciones culturales del perú. Describe qué sabes, qué necesitas averiguar y cómo aplicarías lo aprendido para explicarla o resolverla."
+        },
+        {
+          "slug": "arte-y-diversidad-cultural",
+          "grado": 4,
+          "unidad": "Unidad 4",
+          "titulo": "Arte y diversidad cultural",
+          "resumen": "En este tema aprenderás los conceptos fundamentales de arte y diversidad cultural. Lee la explicación, identifica las ideas principales y relaciona lo aprendido con situaciones de tu vida diaria y de tu comunidad.",
+          "ejemplo": "Piensa en una situación cotidiana relacionada con arte y diversidad cultural. Describe qué sabes, qué necesitas averiguar y cómo aplicarías lo aprendido para explicarla o resolverla."
+        },
+        {
+          "slug": "proyectos-artisticos-contemporaneos",
+          "grado": 5,
+          "unidad": "Unidad 5",
+          "titulo": "Proyectos artísticos contemporáneos",
+          "resumen": "En este tema aprenderás los conceptos fundamentales de proyectos artísticos contemporáneos. Lee la explicación, identifica las ideas principales y relaciona lo aprendido con situaciones de tu vida diaria y de tu comunidad.",
+          "ejemplo": "Piensa en una situación cotidiana relacionada con proyectos artísticos contemporáneos. Describe qué sabes, qué necesitas averiguar y cómo aplicarías lo aprendido para explicarla o resolverla."
+        }
+      ]
+    },
+    {
+      "slug": "educacion-fisica",
+      "nombre": "Educación Física",
+      "icono": "⚽",
+      "temas": [
+        {
+          "slug": "coordinacion-y-movimiento",
+          "grado": 1,
+          "unidad": "Unidad 1",
+          "titulo": "Coordinación y movimiento",
+          "resumen": "En este tema aprenderás los conceptos fundamentales de coordinación y movimiento. Lee la explicación, identifica las ideas principales y relaciona lo aprendido con situaciones de tu vida diaria y de tu comunidad.",
+          "ejemplo": "Piensa en una situación cotidiana relacionada con coordinación y movimiento. Describe qué sabes, qué necesitas averiguar y cómo aplicarías lo aprendido para explicarla o resolverla."
+        },
+        {
+          "slug": "capacidades-fisicas-basicas",
+          "grado": 2,
+          "unidad": "Unidad 2",
+          "titulo": "Capacidades físicas básicas",
+          "resumen": "En este tema aprenderás los conceptos fundamentales de capacidades físicas básicas. Lee la explicación, identifica las ideas principales y relaciona lo aprendido con situaciones de tu vida diaria y de tu comunidad.",
+          "ejemplo": "Piensa en una situación cotidiana relacionada con capacidades físicas básicas. Describe qué sabes, qué necesitas averiguar y cómo aplicarías lo aprendido para explicarla o resolverla."
+        },
+        {
+          "slug": "habitos-saludables",
+          "grado": 3,
+          "unidad": "Unidad 3",
+          "titulo": "Hábitos saludables",
+          "resumen": "En este tema aprenderás los conceptos fundamentales de hábitos saludables. Lee la explicación, identifica las ideas principales y relaciona lo aprendido con situaciones de tu vida diaria y de tu comunidad.",
+          "ejemplo": "Piensa en una situación cotidiana relacionada con hábitos saludables. Describe qué sabes, qué necesitas averiguar y cómo aplicarías lo aprendido para explicarla o resolverla."
+        },
+        {
+          "slug": "deporte-y-trabajo-en-equipo",
+          "grado": 4,
+          "unidad": "Unidad 4",
+          "titulo": "Deporte y trabajo en equipo",
+          "resumen": "En este tema aprenderás los conceptos fundamentales de deporte y trabajo en equipo. Lee la explicación, identifica las ideas principales y relaciona lo aprendido con situaciones de tu vida diaria y de tu comunidad.",
+          "ejemplo": "Piensa en una situación cotidiana relacionada con deporte y trabajo en equipo. Describe qué sabes, qué necesitas averiguar y cómo aplicarías lo aprendido para explicarla o resolverla."
+        },
+        {
+          "slug": "entrenamiento-y-vida-activa",
+          "grado": 5,
+          "unidad": "Unidad 5",
+          "titulo": "Entrenamiento y vida activa",
+          "resumen": "En este tema aprenderás los conceptos fundamentales de entrenamiento y vida activa. Lee la explicación, identifica las ideas principales y relaciona lo aprendido con situaciones de tu vida diaria y de tu comunidad.",
+          "ejemplo": "Piensa en una situación cotidiana relacionada con entrenamiento y vida activa. Describe qué sabes, qué necesitas averiguar y cómo aplicarías lo aprendido para explicarla o resolverla."
+        }
+      ]
+    },
+    {
+      "slug": "educacion-religiosa",
+      "nombre": "Educación Religiosa",
+      "icono": "🕊️",
+      "temas": [
+        {
+          "slug": "la-persona-y-su-dignidad",
+          "grado": 1,
+          "unidad": "Unidad 1",
+          "titulo": "La persona y su dignidad",
+          "resumen": "En este tema aprenderás los conceptos fundamentales de la persona y su dignidad. Lee la explicación, identifica las ideas principales y relaciona lo aprendido con situaciones de tu vida diaria y de tu comunidad.",
+          "ejemplo": "Piensa en una situación cotidiana relacionada con la persona y su dignidad. Describe qué sabes, qué necesitas averiguar y cómo aplicarías lo aprendido para explicarla o resolverla."
+        },
+        {
+          "slug": "valores-y-convivencia",
+          "grado": 2,
+          "unidad": "Unidad 2",
+          "titulo": "Valores y convivencia",
+          "resumen": "En este tema aprenderás los conceptos fundamentales de valores y convivencia. Lee la explicación, identifica las ideas principales y relaciona lo aprendido con situaciones de tu vida diaria y de tu comunidad.",
+          "ejemplo": "Piensa en una situación cotidiana relacionada con valores y convivencia. Describe qué sabes, qué necesitas averiguar y cómo aplicarías lo aprendido para explicarla o resolverla."
+        },
+        {
+          "slug": "libertad-y-responsabilidad",
+          "grado": 3,
+          "unidad": "Unidad 3",
+          "titulo": "Libertad y responsabilidad",
+          "resumen": "En este tema aprenderás los conceptos fundamentales de libertad y responsabilidad. Lee la explicación, identifica las ideas principales y relaciona lo aprendido con situaciones de tu vida diaria y de tu comunidad.",
+          "ejemplo": "Piensa en una situación cotidiana relacionada con libertad y responsabilidad. Describe qué sabes, qué necesitas averiguar y cómo aplicarías lo aprendido para explicarla o resolverla."
+        },
+        {
+          "slug": "solidaridad-y-bien-comun",
+          "grado": 4,
+          "unidad": "Unidad 4",
+          "titulo": "Solidaridad y bien común",
+          "resumen": "En este tema aprenderás los conceptos fundamentales de solidaridad y bien común. Lee la explicación, identifica las ideas principales y relaciona lo aprendido con situaciones de tu vida diaria y de tu comunidad.",
+          "ejemplo": "Piensa en una situación cotidiana relacionada con solidaridad y bien común. Describe qué sabes, qué necesitas averiguar y cómo aplicarías lo aprendido para explicarla o resolverla."
+        },
+        {
+          "slug": "sentido-de-vida-y-compromiso",
+          "grado": 5,
+          "unidad": "Unidad 5",
+          "titulo": "Sentido de vida y compromiso",
+          "resumen": "En este tema aprenderás los conceptos fundamentales de sentido de vida y compromiso. Lee la explicación, identifica las ideas principales y relaciona lo aprendido con situaciones de tu vida diaria y de tu comunidad.",
+          "ejemplo": "Piensa en una situación cotidiana relacionada con sentido de vida y compromiso. Describe qué sabes, qué necesitas averiguar y cómo aplicarías lo aprendido para explicarla o resolverla."
+        }
+      ]
+    },
+    {
+      "slug": "castellano-como-segunda-lengua",
+      "nombre": "Castellano como Segunda Lengua",
+      "icono": "💬",
+      "temas": [
+        {
+          "slug": "saludos-y-expresiones-cotidianas",
+          "grado": 1,
+          "unidad": "Unidad 1",
+          "titulo": "Saludos y expresiones cotidianas",
+          "resumen": "En este tema aprenderás los conceptos fundamentales de saludos y expresiones cotidianas. Lee la explicación, identifica las ideas principales y relaciona lo aprendido con situaciones de tu vida diaria y de tu comunidad.",
+          "ejemplo": "Piensa en una situación cotidiana relacionada con saludos y expresiones cotidianas. Describe qué sabes, qué necesitas averiguar y cómo aplicarías lo aprendido para explicarla o resolverla."
+        },
+        {
+          "slug": "vocabulario-de-la-comunidad",
+          "grado": 2,
+          "unidad": "Unidad 2",
+          "titulo": "Vocabulario de la comunidad",
+          "resumen": "En este tema aprenderás los conceptos fundamentales de vocabulario de la comunidad. Lee la explicación, identifica las ideas principales y relaciona lo aprendido con situaciones de tu vida diaria y de tu comunidad.",
+          "ejemplo": "Piensa en una situación cotidiana relacionada con vocabulario de la comunidad. Describe qué sabes, qué necesitas averiguar y cómo aplicarías lo aprendido para explicarla o resolverla."
+        },
+        {
+          "slug": "describir-personas-y-lugares",
+          "grado": 3,
+          "unidad": "Unidad 3",
+          "titulo": "Describir personas y lugares",
+          "resumen": "En este tema aprenderás los conceptos fundamentales de describir personas y lugares. Lee la explicación, identifica las ideas principales y relaciona lo aprendido con situaciones de tu vida diaria y de tu comunidad.",
+          "ejemplo": "Piensa en una situación cotidiana relacionada con describir personas y lugares. Describe qué sabes, qué necesitas averiguar y cómo aplicarías lo aprendido para explicarla o resolverla."
+        },
+        {
+          "slug": "narrar-experiencias",
+          "grado": 4,
+          "unidad": "Unidad 4",
+          "titulo": "Narrar experiencias",
+          "resumen": "En este tema aprenderás los conceptos fundamentales de narrar experiencias. Lee la explicación, identifica las ideas principales y relaciona lo aprendido con situaciones de tu vida diaria y de tu comunidad.",
+          "ejemplo": "Piensa en una situación cotidiana relacionada con narrar experiencias. Describe qué sabes, qué necesitas averiguar y cómo aplicarías lo aprendido para explicarla o resolverla."
+        },
+        {
+          "slug": "comunicacion-intercultural",
+          "grado": 5,
+          "unidad": "Unidad 5",
+          "titulo": "Comunicación intercultural",
+          "resumen": "En este tema aprenderás los conceptos fundamentales de comunicación intercultural. Lee la explicación, identifica las ideas principales y relaciona lo aprendido con situaciones de tu vida diaria y de tu comunidad.",
+          "ejemplo": "Piensa en una situación cotidiana relacionada con comunicación intercultural. Describe qué sabes, qué necesitas averiguar y cómo aplicarías lo aprendido para explicarla o resolverla."
+        }
+      ]
+    }
+  ]
+}
