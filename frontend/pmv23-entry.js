@@ -48,6 +48,7 @@ function insertarVistasAprendizaje() {
       <header class="cabecera cabecera-simple"><button type="button" class="flecha-volver" data-pmv-back="inicio" aria-label="Volver">←</button><div><span class="eyebrow">PMV2 · PERSONALIZACIÓN</span><h1 id="pmv-titulo-perfil">Mi perfil académico</h1></div></header>
       <div class="contenido-pantalla">
         <p class="texto-ayuda">Crea un identificador sencillo para guardar tus prácticas y consultar tu avance. No ingreses tu nombre completo, DNI, correo ni contraseña.</p>
+        <div id="pmv-perfil-datos" class="pmv-profile-summary" hidden aria-live="polite"></div>
         <form id="pmv-form-perfil" class="pmv-form">
           <label for="pmv-identificador">Identificador personal</label>
           <input id="pmv-identificador" name="identificador" minlength="3" maxlength="64" pattern="[A-Za-z0-9_-]+" placeholder="Ej.: estudiante_01" autocomplete="off" required>
@@ -84,6 +85,7 @@ function insertarVistasAprendizaje() {
       <header class="cabecera cabecera-simple"><button type="button" class="flecha-volver" data-pmv-back="aprendizaje-practica" aria-label="Volver">←</button><div><span class="eyebrow">PMV2 · RESOLUCIÓN</span><h1 id="pmv-titulo-resolver">Resuelve la práctica</h1></div></header>
       <div class="contenido-pantalla">
         <div id="pmv-practica-meta" class="pmv-profile-chip"></div>
+        <div class="pmv-resolver-indicador"><div class="pmv-resolver-indicador-texto"><strong>Tu práctica</strong><span id="pmv-resolver-total">Preparando preguntas…</span></div><div class="pmv-resolver-track"><span></span></div></div>
         <form id="pmv-form-resolver"><div id="pmv-ejercicios"></div><button class="btn btn-primario btn-ancho" type="submit">Enviar respuestas y ver resultados →</button></form>
         <p id="pmv-resolver-mensaje" role="status" aria-live="polite" class="pmv-mensaje"></p>
       </div>
@@ -129,12 +131,32 @@ function insertarVistasAprendizaje() {
   `);
 
   const menu = document.querySelector('#vista-inicio .accesos-grid');
-  if (menu) {
-    menu.insertAdjacentHTML('beforeend', `
-      <button type="button" class="acceso acceso-lila" data-pmv-open="aprendizaje-perfil"><span class="acceso-emoji">👤</span><strong>Mi perfil</strong><small>Personaliza el tutor</small></button>
-      <button type="button" class="acceso acceso-verde" data-pmv-open="aprendizaje-practica"><span class="acceso-emoji">📝</span><strong>Practicar</strong><small>Ejercicios adaptativos</small></button>
-      <button type="button" class="acceso acceso-azul" data-pmv-open="aprendizaje-historial"><span class="acceso-emoji">🕘</span><strong>Historial</strong><small>Mis actividades</small></button>
-      <button type="button" class="acceso acceso-rosa" data-pmv-open="aprendizaje-progreso"><span class="acceso-emoji">📈</span><strong>Mi progreso</strong><small>Avance y refuerzo</small></button>`);
+  if (menu && !document.getElementById('pmv-home-section')) {
+    const seccion = document.createElement('section');
+    seccion.id = 'pmv-home-section';
+    seccion.className = 'pmv-home-section';
+    seccion.setAttribute('aria-labelledby', 'pmv-home-title');
+    seccion.innerHTML = `
+      <div class="pmv-home-heading">
+        <div><span class="eyebrow">TU ESPACIO PERSONAL</span><h2 id="pmv-home-title">Mi aprendizaje</h2></div>
+        <span class="pmv-home-tag">PMV2 + PMV3</span>
+      </div>
+      <p class="pmv-home-description">Personaliza tu tutor, practica con ejercicios y revisa cómo vas avanzando.</p>
+      <div class="pmv-home-grid">
+        <button type="button" class="pmv-home-card pmv-home-card-lila" data-pmv-open="aprendizaje-perfil">
+          <span class="pmv-home-card-icon" aria-hidden="true">👤</span><strong>Mi perfil académico</strong><small>Adapta el tutor a tu nivel</small><span class="pmv-home-card-link">Configurar perfil →</span>
+        </button>
+        <button type="button" class="pmv-home-card pmv-home-card-verde" data-pmv-open="aprendizaje-practica">
+          <span class="pmv-home-card-icon" aria-hidden="true">📝</span><strong>Práctica personalizada</strong><small>Ejercicios según tus necesidades</small><span class="pmv-home-card-link">Empezar práctica →</span>
+        </button>
+        <button type="button" class="pmv-home-card pmv-home-card-azul" data-pmv-open="aprendizaje-historial">
+          <span class="pmv-home-card-icon" aria-hidden="true">🕘</span><strong>Mi historial</strong><small>Revisa tus actividades anteriores</small><span class="pmv-home-card-link">Ver historial →</span>
+        </button>
+        <button type="button" class="pmv-home-card pmv-home-card-rosa" data-pmv-open="aprendizaje-progreso">
+          <span class="pmv-home-card-icon" aria-hidden="true">📈</span><strong>Mi progreso</strong><small>Identifica avances y temas por reforzar</small><span class="pmv-home-card-link">Ver progreso →</span>
+        </button>
+      </div>`;
+    menu.insertAdjacentElement('afterend', seccion);
   }
 
   const registro = document.querySelector('#vista-registro .contenido-pantalla');
@@ -159,11 +181,22 @@ function pedirPerfil() {
 
 function prepararPerfil() {
   const input = $('pmv-identificador');
-  if (aprendizaje.identificador) input.value = aprendizaje.identificador;
+  if (input && aprendizaje.identificador) input.value = aprendizaje.identificador;
   if (aprendizaje.perfil) {
     $('pmv-grado').value = String(aprendizaje.perfil.grado);
     $('pmv-nivel').value = aprendizaje.perfil.nivel_academico;
-    $('pmv-perfil-resumen').textContent = 'Perfil: ' + aprendizaje.perfil.grado + '.º · ' + aprendizaje.perfil.nivel_academico;
+    const resumenPerfil = $('pmv-perfil-datos');
+    if (resumenPerfil) {
+      resumenPerfil.hidden = false;
+      resumenPerfil.textContent = 'Perfil guardado · ' + aprendizaje.perfil.grado + '.º de secundaria · Nivel ' + aprendizaje.perfil.nivel_academico;
+    }
+    const resumenPractica = $('pmv-perfil-resumen');
+    if (resumenPractica) {
+      resumenPractica.textContent = 'Perfil: ' + aprendizaje.perfil.grado + '.º de secundaria · ' + aprendizaje.perfil.nivel_academico;
+    }
+  } else {
+    const resumenPerfil = $('pmv-perfil-datos');
+    if (resumenPerfil) resumenPerfil.hidden = true;
   }
 }
 $('pmv-form-perfil').addEventListener('submit', async (evento) => {
@@ -264,6 +297,7 @@ $('pmv-form-practica').addEventListener('submit', async (evento) => {
 function pintarEjercicios(practica) {
   $('pmv-practica-meta').textContent =
     practica.asignatura + ' · ' + practica.tema + ' · Dificultad ' + practica.dificultad;
+  $('pmv-resolver-total').textContent = practica.ejercicios.length + ' preguntas · responde todas para finalizar';
   const caja = $('pmv-ejercicios');
   caja.replaceChildren();
   practica.ejercicios.forEach((ejercicio, indice) => {
@@ -519,9 +553,6 @@ document.addEventListener('click', evento => {
 
 if (aprendizaje.identificador) {
   recuperarPerfil().then(() => {
-    if (aprendizaje.perfil) {
-      const input = $('pmv-identificador');
-      if (input) input.value = aprendizaje.perfil.identificador;
-    }
+    if (aprendizaje.perfil) prepararPerfil();
   });
 }
