@@ -39,7 +39,7 @@
         <div class="contenido-pantalla">
           <div class="tl-topic-meta" id="tl-tema-meta"></div>
           <article class="tl-lesson"><h2>¿Qué aprenderás?</h2><p id="tl-tema-resumen"></p><h2>Ejemplo para comprender</h2><p id="tl-tema-ejemplo"></p></article>
-          <section class="tl-video-panel"><div class="tl-video-icon">▶</div><div><h2>Videos explicativos</h2><p>Encuentra explicaciones audiovisuales relacionadas con este tema.</p></div><a id="tl-video-link" class="btn btn-primario btn-ancho" href="#" target="_blank" rel="noopener noreferrer">Buscar videos en YouTube ↗</a><small>Los videos necesitan Internet y los resultados pertenecen a YouTube. Revisa el contenido con orientación de tu docente.</small></section>
+          <section class="tl-video-panel"><div class="tl-video-icon">▶</div><div><h2>Videos explicativos</h2><p>Encuentra explicaciones audiovisuales relacionadas con este tema.</p></div><a id="tl-video-link" class="btn btn-primario btn-ancho" href="#" target="_blank" rel="noopener noreferrer">Buscar videos en YouTube ↗</a><div id="tl-video-results" class="tl-video-results" aria-live="polite"></div><small>Los videos necesitan Internet y los resultados pertenecen a YouTube. Revisa el contenido con orientación de tu docente.</small></section>
           <div class="tl-offline-note">📘 La explicación y el ejemplo de esta pantalla están disponibles desde el servidor escolar sin Internet.</div>
           <button class="btn btn-secundario btn-ancho" type="button" data-ir="biblioteca-asignatura">Volver a los temas</button>
         </div>
@@ -95,8 +95,35 @@
       $b('tl-tema-meta').textContent=data.asignatura+' · '+data.grado+'.º de secundaria · '+data.tema.unidad;
       $b('tl-tema-resumen').textContent=data.tema.resumen;
       $b('tl-tema-ejemplo').textContent=data.tema.ejemplo;
-      const link=$b('tl-video-link');link.href=data.video_url;
+      const link=$b('tl-video-link');link.href=data.video_url; cargarVideos(tema.slug);
     }catch(e){$b('tl-tema-resumen').textContent=e.message;}
+  }
+  async function cargarVideos(temaSlug) {
+    const caja=$b('tl-video-results');caja.replaceChildren();
+    try {
+      const data=await api('/api/biblioteca/'+encodeURIComponent(estado.curso.slug)+'/'+encodeURIComponent(temaSlug)+'/videos?grado='+estado.grado);
+      if(data.videos && data.videos.length) {
+        data.videos.forEach(video=>{
+          const card=document.createElement('article');card.className='tl-video-card';
+          const frame=document.createElement('iframe');
+          frame.src='https://www.youtube-nocookie.com/embed/'+video.id;
+          frame.title=video.titulo;frame.loading='lazy';frame.referrerPolicy='strict-origin-when-cross-origin';
+          frame.allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share';
+          frame.allowFullscreen=true;card.append(frame);
+          const title=document.createElement('strong');title.textContent=video.titulo;card.append(title);
+          const channel=document.createElement('small');channel.textContent=video.canal;card.append(channel);
+          caja.append(card);
+        });
+      } else {
+        const note=document.createElement('p');note.className='tl-video-fallback';
+        note.textContent=data.detalle || 'Puedes buscar videos relacionados en YouTube.';
+        caja.append(note);
+      }
+    } catch(e) {
+      const note=document.createElement('p');note.className='tl-video-fallback';
+      note.textContent='No se pudieron cargar videos automáticamente. Usa el enlace de búsqueda de YouTube.';
+      caja.append(note);
+    }
   }
   function agregarMensaje(role, text) {
     const bubble=document.createElement('div');bubble.className='tl-chat-bubble '+role;bubble.textContent=text;
