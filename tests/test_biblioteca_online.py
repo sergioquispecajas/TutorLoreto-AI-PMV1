@@ -60,3 +60,14 @@ def test_new_frontend_extension_is_additive():
     assert "vista-tutor-online" in js
     assert ".tl-home-section" in css
     assert '"asignaturas"' in catalog
+
+def test_youtube_video_endpoint_falls_back_to_search_without_api_key(monkeypatch):
+    monkeypatch.delenv("YOUTUBE_API_KEY", raising=False)
+    subject = client.get("/api/biblioteca/matematica?grado=1").json()
+    topic_slug = subject["temas"][0]["slug"]
+    response = client.get(f"/api/biblioteca/matematica/{topic_slug}/videos?grado=1")
+    assert response.status_code == 200
+    payload = response.json()
+    assert payload["videos"] == []
+    assert payload["modo"] == "busqueda"
+    assert payload["busqueda_url"].startswith("https://www.youtube.com/results")
