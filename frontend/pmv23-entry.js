@@ -551,8 +551,29 @@ document.addEventListener('click', evento => {
   }
 });
 
+function restaurarVistaAprendizaje() {
+  const solicitada = location.hash.slice(1);
+  if (!solicitada.startsWith('aprendizaje-')) return;
+  const accesibles = new Set([
+    'aprendizaje-perfil', 'aprendizaje-practica',
+    'aprendizaje-historial', 'aprendizaje-progreso'
+  ]);
+  irAprendizaje(accesibles.has(solicitada) ? solicitada : 'aprendizaje-practica');
+}
+
+window.addEventListener('popstate', () => {
+  const vista = location.hash.slice(1);
+  if (vista === 'aprendizaje-perfil') prepararPerfil();
+  if (vista === 'aprendizaje-practica') cargarSelectorPractica();
+  if (vista === 'aprendizaje-historial') cargarHistorial();
+  if (vista === 'aprendizaje-progreso') cargarProgreso();
+});
+
 if (aprendizaje.identificador) {
   recuperarPerfil().then(() => {
     if (aprendizaje.perfil) prepararPerfil();
+    restaurarVistaAprendizaje();
   });
+} else {
+  restaurarVistaAprendizaje();
 }

@@ -31,6 +31,8 @@ def test_pmv2_pmv3_screens_and_home_access_are_present():
         assert access in entry
     assert "pmv-home-section" in entry
     assert "pmv-perfil-datos" in entry
+    assert "restaurarVistaAprendizaje" in entry
+    assert "window.addEventListener('popstate'" in entry
 
 
 def test_pmvs_assets_are_injected_by_fastapi():
